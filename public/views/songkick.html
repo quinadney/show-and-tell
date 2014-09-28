@@ -14,45 +14,26 @@
         <th>Touring in {{location}}?</th>
         <th>Spotify</th>
       </tr>
-      <tr ng-repeat="artist in recommendedArtists">
+      <tr ng-repeat="artist in recommendedArtists | orderBy:'-austin'">
         <td>{{artist.displayName}}</td>
-        <td>Link to event info</td>
+        <td><a ng-click='toggleTour(artist)'>Link to event info{{artist.austin}}</a></td>
         <!--!!!!!! link spotify link to ng-click function that calls for an artist ID AND links to that id !!!!!!!-->
-        <td><a ng-click='toggleModal(artist.displayName)'>Link to artist Spotify</a></td>
+        <td><a ng-click='toggleModal(artist.displayName)'>Listen</a></td>
       </tr>
-      <!-- ng-click="SpotifyLink(artist.displayName)" -->
     </table>  
   </div>
 
 
   <modal-dialog show='modalShown' width='750px' height='90%'>
-   <p>Hear Music By: {{modalArtist}}<p>
+   <p style="color:white">Check Out Music By: {{modalArtist}}</p>
    <iframe ng-src="{{spotifyEmbedURL}}" width="600px" height="600px" frameborder="0" allowtransparency="true"></iframe>
   </modal-dialog>
 
-
-
-
-
-
-
-<!-- 
-  <button class="btn" ng-click="clickToOpen()">Open Modal</button>
-  <script type="text/ng-template" id="popupTmpl.html">
-    <div modal="showModal" close="cancel()">
-      <div class="modal-header">
-          <h4>Modal Dialog</h4>
-      </div>
-      <div class="modal-body">
-          <p>Example paragraph with some text.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success" ng-click="ok()">Okay</button>
-        <button class="btn" ng-click="cancel()">Cancel</button>
-      </div>
-    </div>
-  </script> -->
-  <!-- <button ng-click='toggleModal()'>Open Modal Dialog</button> -->
-
+  <modal-dialog show='tourModal' width='750px' height='90%'>
+   <p style="color:white">Hello</p>
+   <div ng-repeat="tour in artistTour">
+    {{tour}}
+  </div>
+  </modal-dialog>
 
 </div>
