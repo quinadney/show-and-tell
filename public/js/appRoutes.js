@@ -12,14 +12,15 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     controller: 'GmapsController'
   })
   
-  .when('/gmaps2', {
-    templateUrl: 'views/gmaps2.html',
-    controller: 'GmapsController'
-  })
+  // .when('/gmaps2', {
+  //   templateUrl: 'views/gmaps2.html',
+  //   controller: 'GmapsController'
+  // })
 
-  .when('/gmaps3', {
-    templateUrl: 'views/gmaps3.html'
-  })
+  // .when('/gmaps3', {
+  //   templateUrl: 'views/gmaps3.html',
+  //   controller: 'GmapsController'
+  // })
 
   .when('/songkick', {
     templateUrl: 'views/songkick.html',
@@ -27,40 +28,59 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
   })
 
   .when('/bike', {
-    templateUrl: 'views/gmaps2.html',
+    templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
     transportation: 'BICYCLING'
   })
 
-  .when('/bike/:lat/:long', {
-    templateUrl: 'views/gmaps2.html',
-    controller: 'GmapsController',
-    transportation: 'BICYCLING'
-  })
+  // .when('/BICYCLING/:lat/:long', {
+  //   templateUrl: 'views/gmaps.html',
+  //   controller: 'GmapsController',
+  // })
 
   .when('/bus', {
-    templateUrl: 'views/gmaps2.html',
+    templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
     transportation: 'TRANSIT'
   })
 
+  // .when('/TRANSIT/:lat/:long', {
+  //   templateUrl: 'views/gmaps.html',
+  //   controller: 'GmapsController',
+  // })
+
   .when('/car', {
-    templateUrl: 'views/gmaps2.html',
+    templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
     transportation: 'DRIVING'
   })
 
+  .when('/gmaps/:lat/:long/:method', {
+    templateUrl: 'views/gmaps.html',
+    controller: 'GmapsController',
+  })
+
   .when('/walk', {
-    templateUrl: 'views/gmaps2.html',
+    templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
     transportation: 'walk'
   })
 
+  // .when('/gmaps/:transport/:lat/:long', {
+  //   templateUrl: 'views/gmaps.html',
+  //   controller: 'GmapsController',
+  // })
+
   .when('/plane', {
-    templateUrl: 'views/gmaps2.html',
+    templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
     transportation: 'plane'
   })
+
+  // .when('/plane/:lat/:long', {
+  //   templateUrl: 'views/gmaps.html',
+  //   controller: 'GmapsController',
+  // })
 
   .when('/venue', {
     templateUrl: 'views/venue.html',
@@ -81,6 +101,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     templateUrl: 'views/localVenues.html',
     controller: 'LocalVenuesController'
   });
+
+  // .otherwise({
+  //   templateUrl: 'views/main.html',
+  //   controller: 'MainController'
+  // });
 
 
   // $locationProvider.html5Mode(true);

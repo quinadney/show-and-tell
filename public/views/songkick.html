@@ -55,10 +55,10 @@
           <td><a ng-click='getVenue(tour.venue.displayName, tour.venue.id)'>{{tour.venue.displayName}}</a></td>
           <td>{{tour.location.city}}</td>
           <td>
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'bike')"><i class="fa fa-bicycle"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'bus')"><i class="fa fa-bus"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'walk')"><i class="fa fa-male"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'car')"><i class="fa fa-car"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')"><i class="fa fa-bicycle"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'TRANSIT')"><i class="fa fa-bus"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'WALKING')"><i class="fa fa-male"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'DRIVING')"><i class="fa fa-car"></i></a>  
             <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')"><i class="fa fa-plane"></i></a>
             <!-- <i class="fa fa-rocket"></i> -->
           </td>

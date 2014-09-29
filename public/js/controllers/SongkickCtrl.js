@@ -150,7 +150,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
   $scope.getMap = function(lat, long, type) {
     console.log(lat, long);
-    $location.path(('/' + type + '/' + lat + '/' + long));
+    $location.path(('/gmaps/' + lat + '/' + long + '/' + type));
   };
 
   $scope.getVenue = function(venue, id) {

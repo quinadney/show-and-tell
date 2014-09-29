@@ -1,9 +1,43 @@
 <div class="jumbotron text-center">
   <h1>Google Maps</h1>
 
-  <p>{{tagline}}</p>
+  <p>{{tagline}}  {{mode}}  {{routeParams}}</p>
 
-  <google-map center="map.center" direction-service direction-info draggable="true" zoom="map.zoom"></google-map>
-  <style> .angular-google-map-container { height: 400px; } </style>
+
+  <form novalidate name="mapContainer" class="mapContainer panel">
+      <div class="directions" ng-show="directions || directions==undefined"> 
+      <label>Origin: {{mode}}</label> 
+      <input type="text" ng-model="origin" name="origin"  required> 
+      <!-- <small class="error" id="wrongAddress">Error: \n   -->
+      <!-- <span>Sorry this is not a valid address.</span>  -->
+      <!-- </small>  -->
+      <label>Destination:</label> 
+      <input ng-model="endPoint" type="text" disabled> 
+      <button class="getDirections" ng-click="getDirections()" ng-disabled="mapContainer.$invalid">Get Directions</button>  
+      <!-- <button class="clearDirections alert" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>  -->
+      <div id="theMap"></div> 
+
+      <div id="directionsList"></div> 
+  </form>
+
+  <style> 
+  #theMap {
+      width:100%;
+      height:300px;
+      background:#ccc;
+      margin: 5px 0;
+  }
+  .mapContainer {
+      width:100%;
+      margin:5px;
+      background-color: #eeeeee;
+  }
+  img {
+      max-width: none;
+  }
+  #wrongAddress {
+      display:none;
+  }
+  </style> 
 
 </div>
