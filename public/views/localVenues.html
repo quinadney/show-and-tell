@@ -1,13 +1,40 @@
 <link rel="stylesheet" type="text/css" href="../css/localVenues.css">
 <div class="jumbotron text-center">
-  <h1>Venue {{venueID}}</h1>
+  <h1>{{city}} Locality</h1>
 
-  <div class="headline">
-    <form ng-submit="venueSearch()">
-      <!-- <p>{{location.latitude}} {{location.longitude}}</p> -->
-      <!-- Venue {{venueID}} -->
-      <input type="text">
-    </form>
+  <div class="row">
+    <div class="col-md-12">
+     
+     <div class="col-md-6" style="height:470px;overflow:auto;padding:1em;">
+      <table width="100%">
+        <h3>Venues in {{city}}</h3>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+        </tr>
+        <tr ng-repeat="venue in localVenues">
+          <td><a ng-href="{{uri}}">{{venue.displayName}}</a></td>
+          <td>{{venue.street}}, {{venue.zip}}</td>
+        </tr>
+      </table>  
+     </div>
+
+     <div class="col-md-6" style="height:470px;overflow:auto;border-left:solid 1px;padding:1em;color:black">
+      <table width="100%">
+        <h3>All Upcoming Events in {{city}}</h3>
+        <tr>
+          <th>Headliner</th>
+          <th>Venue</th>
+          <th>Date</th>
+        </tr>
+        <tr ng-repeat="event in upcomingEvents" ng-class="getClass(event)">
+          <td>{{event.performance[0].artist.displayName}}</td>
+          <td>{{event.venue.displayName}}</td>
+          <td>{{event.start.date}}</td>
+        </tr>
+      </table>  
+     </div>
+    </div>
   </div>
 
 </div>

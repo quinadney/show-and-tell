@@ -30,16 +30,22 @@
   
   <div class="row">
     <div class="col-md-6" ng-repeat="place in allVenueInfo">
+      <p><b>More Pictures:</b></p>
+      <img ng-src="{{photo1}}"/>
       <img ng-src="{{photo2}}"/> 
       <img ng-src="{{photo3}}"/>
       <img ng-src="{{photo4}}"/> 
       <img ng-src="{{photo5}}"/>
       <img ng-src="{{photo6}}"/> 
     </div>
-    <div class="col-md-6" ng-repeat="event in upcomingEvents">
-      <h3>Upcoming Events:</h3>
-      <p>{{event.start.date}}: {{event.displayName}} ({{event.type}})</p>
+    <h3>Upcoming Events:</h3>
+    <div class="col-md-6" style="height:500px;overflow:auto;">
+      <p ng-repeat="event in upcomingEvents">{{event.displayName}}</p>
     </div>
   </div>
+<!-- 
+  <div ng-repeat="venueEvent in venueEvents">
+    <p>{{venueEvent.performance.artist.displayName}}: {{venueEvent.start.date}}</p>
+  </div> -->
 
 </div>

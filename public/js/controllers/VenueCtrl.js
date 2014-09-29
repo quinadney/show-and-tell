@@ -28,15 +28,22 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
         $scope.allVenueInfo.push(data.response.venue);
         console.log(data.response.venue);
         console.log($scope.allVenueInfo);
-        $scope.photo = data.response.venue.photos.groups[0].items[0].prefix + '330x330' + data.response.venue.photos.groups[0].items[0].suffix;
-        $scope.photo2 = data.response.venue.photos.groups[0].items[1].prefix + '225x225' + data.response.venue.photos.groups[0].items[1].suffix;
-        $scope.photo3 = data.response.venue.photos.groups[0].items[2].prefix + '225x225' + data.response.venue.photos.groups[0].items[2].suffix;
-        $scope.photo4 = data.response.venue.photos.groups[0].items[3].prefix + '225x225' + data.response.venue.photos.groups[0].items[3].suffix;
-        $scope.photo5 = data.response.venue.photos.groups[0].items[4].prefix + '225x225' + data.response.venue.photos.groups[0].items[4].suffix;
-        $scope.photo6 = data.response.venue.photos.groups[0].items[5].prefix + '225x225' + data.response.venue.photos.groups[0].items[5].suffix;
+        $scope.photo = data.response.venue.photos.groups[0].items[0].prefix + '300x300' + data.response.venue.photos.groups[0].items[0].suffix;
+        $scope.photo1 = data.response.venue.photos.groups[0].items[0].prefix + '150x150' + data.response.venue.photos.groups[0].items[0].suffix;
+        $scope.photo2 = data.response.venue.photos.groups[0].items[1].prefix + '150x150' + data.response.venue.photos.groups[0].items[1].suffix;
+        $scope.photo3 = data.response.venue.photos.groups[0].items[2].prefix + '150x150' + data.response.venue.photos.groups[0].items[2].suffix;
+        $scope.photo4 = data.response.venue.photos.groups[0].items[3].prefix + '150x150' + data.response.venue.photos.groups[0].items[3].suffix;
+        $scope.photo5 = data.response.venue.photos.groups[0].items[4].prefix + '150x150' + data.response.venue.photos.groups[0].items[4].suffix;
+        $scope.photo6 = data.response.venue.photos.groups[0].items[5].prefix + '150x150' + data.response.venue.photos.groups[0].items[5].suffix;
       });
     });
   })(); // immediately call function on load
+
+
+  // $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+  //   .success(function(data) {
+  //     $scope.venueEvents = data.resultsPage.results.event;
+  //   });
 
 
   if ($scope.songkickID) {

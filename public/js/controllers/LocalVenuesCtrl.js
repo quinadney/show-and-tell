@@ -9,18 +9,36 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
 //       console.log(data);
 //     });
 //   })(); // immediately call function on load
+  $scope.upcomingEvents = [];
 
   $scope.getCurrentCity = function() {
     var promise = $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + $scope.location.latitude + ',' + $scope.location.longitude + '&apikey=QEwCZke1ncpF2MnG');
     promise.success(function(data) {
-      console.log(data);
-      $scope.city = localStorage.getItem('currentCity');
-      // $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
+      console.log('city data', data);
+      $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
+      $scope.cityID = data.resultsPage.results.location[0].metroArea.id;
+      
       localStorage.setItem('currentCity', $scope.city);
 
-      console.log($scope.city);
+      $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+        .success(function(data) {
+          $scope.upcomingEvents = (data.resultsPage.results.event);
+        });
     });
   };
+
+  $scope.getClass = function(event) {
+    if (event.type === 'Festival') {return 'blue';}
+  };
+
+  (function getLocalVenues() {
+    console.log('trying');
+    $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=austin,tx&apikey=QEwCZke1ncpF2MnG')
+      .success(function(data) {
+        console.log(data);
+        $scope.localVenues = data.resultsPage.results.venue;
+      });
+    })();
 
   function locationDefined() {
     return $scope.location.longitude && $scope.location.latitude;
@@ -33,6 +51,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
       if (oldValue !== newValue) {
         if (locationDefined()) {
           $scope.getCurrentCity();
+          $scope.getLocalVenues();
         }
       }
     }, true);

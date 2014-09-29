@@ -17,6 +17,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     controller: 'GmapsController'
   })
 
+  .when('/gmaps3', {
+    templateUrl: 'views/gmaps3.html'
+  })
+
   .when('/songkick', {
     templateUrl: 'views/songkick.html',
     controller: 'SongkickController'
@@ -28,7 +32,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     transportation: 'BICYCLING'
   })
 
-  .when('/bike/:id/:dog', {
+  .when('/bike/:lat/:long', {
     templateUrl: 'views/gmaps2.html',
     controller: 'GmapsController',
     transportation: 'BICYCLING'

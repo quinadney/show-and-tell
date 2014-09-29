@@ -1,4 +1,4 @@
-angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope, $route) {
+angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope, $route, $routeParams) {
   $scope.tagline = "Let's get you that map...";
   $scope.mode = $route.current.transportation;
   $scope.map = {
@@ -8,6 +8,11 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
       },
       zoom: 13
   };
+  $scope.latitude = $routeParams.lat;
+  $scope.longitude = $routeParams.long;
+
+  console.log($scope.latitude, $scope.longitude);
+
 
   var directionsService = new google.maps.DirectionsService();
 
@@ -92,7 +97,8 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
                 };
                 map = new google.maps.Map(document.getElementById('theMap'), mapOptions);
                 scope.origin = localStorage.getItem('latitude') + ', ' + localStorage.getItem('longitude');
-                scope.endPoint = scope.destination !== undefined ? scope.destination : '1600 Amphitheatre Parkway, Santa Clara County, CA';
+                scope.endPoint = scope.longitude
+                 // scope.destination !== undefined ? scope.destination : '1803 E 18th St, Austin TX 78702';
                 // scope.mode = {{mode}}
 
                 geocoder.geocode({

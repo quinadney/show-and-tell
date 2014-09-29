@@ -21,7 +21,9 @@
     <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="libs/ngDialog/js/ngDialog.min.js"></script>
     <script src="libs/ngModal/dist/ng-modal.min.js"></script>
-<!--  -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0Kew6yWdoFJvAa1fUZ9LrbzdJOAEPCvE"></script> -->
+
+
     <!-- ANGULAR CUSTOM -->
     <script src="js/app.js"></script>
     <script src="js/controllers/MainCtrl.js"></script>
@@ -34,6 +36,7 @@
     <script src="js/controllers/LocationCtrl.js"></script>
     <script src="js/controllers/VenueCtrl.js"></script>
     <script src="js/controllers/LocalVenuesCtrl.js"></script>
+    <!-- <script src="js/controllers/gmaps3.js"></script> -->
     <script src="js/appRoutes.js"></script>
   </head>
 
@@ -47,13 +50,35 @@
         </div>
 
         <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+    
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="MainController">
         <ul class="nav navbar-nav">
           <!-- <li><a href="/nerds">Nerds</a></li> -->
           <!-- <li><a href="/geeks">Geeks</a></li> -->
           <li><a href="/#songkick">Songkick</a></li>          
           <li><a href="/#gmaps2">Google Maps</a></li>
           <li><a href="/#localVenues">Local Venues</a></li>
-        </ul>
+                        <!--     <div class="btn-group" dropdown>
+                              <button type="button" class="btn btn-danger">Profile</button>
+                              <button type="button" class="btn btn-danger dropdown-toggle">
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Edit</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Log Out</a></li>
+                              </ul>
+                            </div> -->
+
+         </ul>
+         </div>
+<!--         <ul class="nav navbar-nav">
+          <li>Hi</li>
+        </ul> -->
       </nav>
 
       <!-- ANGULAR DYNAMIC CONTENT -->
