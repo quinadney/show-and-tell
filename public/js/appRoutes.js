@@ -4,26 +4,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
   // home page
   .when('/', {
-    templateUrl: 'views/home.html',
-    controller: 'MainController'
-  })
-
-  // nerds page that will use the NerdController
-  .when('/nerds', {
-    templateUrl: 'views/nerd.html',
-    controller: 'NerdController'
-  })
-
-  //
-  .when('/geeks', {
-    templateUrl: 'views/geek.html',
-    controller: 'GeekController'
+    templateUrl: 'views/home.html'
   })
 
   .when('/gmaps', {
     templateUrl: 'views/gmaps.html',
     controller: 'GmapsController'
   })
+  
   .when('/gmaps2', {
     templateUrl: 'views/gmaps2.html',
     controller: 'GmapsController'
@@ -32,9 +20,65 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
   .when('/songkick', {
     templateUrl: 'views/songkick.html',
     controller: 'SongkickController'
+  })
+
+  .when('/bike', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'BICYCLING'
+  })
+
+  .when('/bike/:id/:dog', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'BICYCLING'
+  })
+
+  .when('/bus', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'TRANSIT'
+  })
+
+  .when('/car', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'DRIVING'
+  })
+
+  .when('/walk', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'walk'
+  })
+
+  .when('/plane', {
+    templateUrl: 'views/gmaps2.html',
+    controller: 'GmapsController',
+    transportation: 'plane'
+  })
+
+  .when('/venue', {
+    templateUrl: 'views/venue.html',
+    controller: 'VenueController'
+  })
+
+  .when('/venue/:venue', {
+    templateUrl: 'views/venue.html',
+    controller: 'VenueController'
+  })
+
+  .when('/venue/:venue/:id', {
+    templateUrl: 'views/venue.html',
+    controller: 'VenueController'
+  })
+
+  .when('/localVenues', {
+    templateUrl: 'views/localVenues.html',
+    controller: 'LocalVenuesController'
   });
 
 
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 
 }]);

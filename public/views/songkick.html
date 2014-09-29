@@ -2,23 +2,31 @@
 <div class="jumbotron text-center">
   <h1>Hello Songkick</h1>
 
-  <p>{{tagline}}</p>
+  <div class="headline">
+    <form ng-submit="getArtist()">
+      <!-- <p>{{location.latitude}} {{location.longitude}}</p> -->
+      <label>{{tagline}}</label>
+      <input type="text" ng-model="artist">
+    </form>
+  </div>
 
-  {{lat}} {{lng}}
-  <form ng-submit="getArtist()"><input type="text" ng-model="artist"></form>
+
+ 
 
   <div class="songkick-table" style="height:300px;overflow:auto;border:solid 1px;padding:1em;margin:1em">
     <table width="100%">
       <tr>
-        <th>Artist</th>
-        <th>Touring in {{location}}?</th>
-        <th>Spotify</th>
+        <th>Spotify Stream</th>
+        <th>Similar Artists</th>
+        <th>Upcoming Tour</th>        
+        <th>Touring in {{city}}?</th>
       </tr>
-      <tr ng-repeat="artist in recommendedArtists | orderBy:'-austin'">
+      <tr ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
+        <td><a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play fa-1x"></i></a></td>
         <td>{{artist.displayName}}</td>
-        <td><a ng-click='toggleTour(artist)'>Link to event info{{artist.austin}}</a></td>
+        <td><a ng-click='toggleTour(artist)'>Dates</a></td>
+        <td>{{artist.currentCity}}</td>
         <!--!!!!!! link spotify link to ng-click function that calls for an artist ID AND links to that id !!!!!!!-->
-        <td><a ng-click='toggleModal(artist.displayName)'>Listen</a></td>
       </tr>
     </table>  
   </div>
@@ -30,9 +38,39 @@
   </modal-dialog>
 
   <modal-dialog show='tourModal' width='750px' height='90%'>
-   <p style="color:white">Hello</p>
-   <div ng-repeat="tour in artistTour">
-    {{tour}}
+   <p style="color:white">Tour Dates for: <em>{{artistName}}</em></p>
+   <div>
+    <!-- <p>{{tour}}</p> -->
+    <div class="tour-table" style="height:570px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
+    <!-- <p ng-repeat="tour in artistTour">{{tour}}</p> -->
+      <table width="100%">
+        <tr>
+          <th>Date</th>
+          <th>Venue</th>
+          <th>City</th>
+          <th>Directions</th>
+        </tr>
+        <tr ng-repeat="tour in artistTour" ng-class="getClass(tour)">
+          <td>{{tour.start.date}}</td>
+          <td><a ng-click='getVenue(tour.venue.displayName, tour.venue.id)'>{{tour.venue.displayName}}</a></td>
+          <td>{{tour.location.city}}</td>
+          <td>
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'bike')"><i class="fa fa-bicycle"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'bus')"><i class="fa fa-bus"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'walk')"><i class="fa fa-male"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'car')"><i class="fa fa-car"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')"><i class="fa fa-plane"></i></a>
+            <!-- <i class="fa fa-rocket"></i> -->
+          </td>
+        </tr>
+      </table>  
+    </div>
+    <div class="legend">
+      <span style="color:purple"> {{city}} = Purple </span>
+      <span style="color:green"> Festival = Green </span>
+      <span style="color:blue"> 14+ = Blue </span>
+      <span style="color:red"> 21+ = Red </span>
+    </div>
   </div>
   </modal-dialog>
 

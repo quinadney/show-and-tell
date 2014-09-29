@@ -1,3 +1,4 @@
+'use strict';
 angular.module('showAndTellApp', [
   'ngRoute', 
   'appRoutes', 
@@ -8,5 +9,7 @@ angular.module('showAndTellApp', [
   'GeekCtrl', 
   'GeekService',
   'GmapsCtrl',
-  'LocationCtrl'
+  'LocationCtrl',
+  'VenueCtrl',
+  'LocalVenuesCtrl'
 ]);

@@ -1,0 +1,45 @@
+<head><meta http-equiv="Content-Type" content="image/png"></head>
+<link rel="stylesheet" type="text/css" href="../css/venue.css">
+
+<div class="jumbotron text-center">
+  <h1>{{selectedVenue[0].name}}</h1>
+  
+  <div class="row">
+    <div class="col-md-12" ng-repeat="venue in selectedVenue">
+      <div class="col-md-6" ng-repeat="place in allVenueInfo">
+        <p><em>{{place.description}}</em></p>
+        <!-- <p>Venue ID: {{venue.id}}</p> -->
+        <p><b>{{venue.location.address}}</b></p>
+        <p>{{venue.location.city}}, {{venue.location.state}} {{venue.location.postalCode}}</p>
+        <br/>
+        <p><a ng-href="{{place.url}}">Webpage</a> / 
+           <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}">Facebook</a> / 
+           <a ng-href="https://twitter.com/{{place.contact.twitter}}">Twitter</a>
+        </p>
+        <p>Phone: {{place.contact.formattedPhone}}</p>
+        <p></p>
+        <p>Check-ins: {{venue.stats.checkinsCount}}</p>
+      </div>
+      <div class="col-md-6">
+        <img ng-src="{{photo}}"/>
+      </div>
+    </div>
+  </div>
+  
+  <br><br>
+  
+  <div class="row">
+    <div class="col-md-6" ng-repeat="place in allVenueInfo">
+      <img ng-src="{{photo2}}"/> 
+      <img ng-src="{{photo3}}"/>
+      <img ng-src="{{photo4}}"/> 
+      <img ng-src="{{photo5}}"/>
+      <img ng-src="{{photo6}}"/> 
+    </div>
+    <div class="col-md-6" ng-repeat="event in upcomingEvents">
+      <h3>Upcoming Events:</h3>
+      <p>{{event.start.date}}: {{event.displayName}} ({{event.type}})</p>
+    </div>
+  </div>
+
+</div>

@@ -7,6 +7,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="libs/ngDialog/css/ngDialog.css">
     <link rel="stylesheet" href="libs/ngModal/dist/ng-modal.css">
     <!-- <link rel="stylesheet" href="css/style.css"> CUSTOM CSS-->
@@ -22,6 +23,7 @@
     <script src="libs/ngModal/dist/ng-modal.min.js"></script>
 <!--  -->
     <!-- ANGULAR CUSTOM -->
+    <script src="js/app.js"></script>
     <script src="js/controllers/MainCtrl.js"></script>
     <script src="js/controllers/NerdCtrl.js"></script>
     <script src="js/controllers/GeekCtrl.js"></script>
@@ -30,11 +32,13 @@
     <script src="js/controllers/GmapsCtrl.js"></script>
     <script src="js/controllers/SongkickCtrl.js"></script>
     <script src="js/controllers/LocationCtrl.js"></script>
+    <script src="js/controllers/VenueCtrl.js"></script>
+    <script src="js/controllers/LocalVenuesCtrl.js"></script>
     <script src="js/appRoutes.js"></script>
-    <script src="js/app.js"></script>
   </head>
 
-  <body ng-app="showAndTellApp">
+
+  <body ng-app="showAndTellApp" ng-controller="MainController">
     <div class="container">
       <!-- HEADER -->
       <nav class="navbar navbar-inverse">
@@ -46,8 +50,9 @@
         <ul class="nav navbar-nav">
           <!-- <li><a href="/nerds">Nerds</a></li> -->
           <!-- <li><a href="/geeks">Geeks</a></li> -->
-          <li><a href="/songkick">Songkick</a></li>          
-          <li><a href="/gmaps">Google Maps</a></li>
+          <li><a href="/#songkick">Songkick</a></li>          
+          <li><a href="/#gmaps2">Google Maps</a></li>
+          <li><a href="/#localVenues">Local Venues</a></li>
         </ul>
       </nav>
 
@@ -55,4 +60,10 @@
       <div ng-view></div>
     </div>
   </body>
+
+  <script>
+
+  </script>
+
+
 </html>

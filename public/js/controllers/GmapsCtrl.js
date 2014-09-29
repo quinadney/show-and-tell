@@ -1,6 +1,6 @@
-angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope) {
+angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope, $route) {
   $scope.tagline = "Let's get you that map...";
-
+  $scope.mode = $route.current.transportation;
   $scope.map = {
       center: {
           latitude: 30.26715299,
@@ -58,18 +58,20 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
 
     mapObj = {
         restrict: 'EAC',
+        transclude: true,
         scope: {
             destination: '@',
             markerContent: '@',
             zoom: '=',
             type: '@',
-            directions: '@'
+            directions: '@',
+            mode: '='
         },
         replace: true,
         template: '<form novalidate name="mapContainer" class="mapContainer panel">' +
             '<div id="theMap"></div>' +
             '<div class="directions" ng-show="directions || directions==undefined">' +
-            '<label>Origin:</label>' +
+            '<label>Origin: {{mode}}</label>' +
             '<input type="text" ng-model="origin" name="origin"  required>' +
             '<small class="error" id="wrongAddress">Error: \n ' +
             '<span>Sorry this is not a valid address.</span>' +
@@ -89,7 +91,9 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
                     streetViewControl: false
                 };
                 map = new google.maps.Map(document.getElementById('theMap'), mapOptions);
+                scope.origin = localStorage.getItem('latitude') + ', ' + localStorage.getItem('longitude');
                 scope.endPoint = scope.destination !== undefined ? scope.destination : '1600 Amphitheatre Parkway, Santa Clara County, CA';
+                // scope.mode = {{mode}}
 
                 geocoder.geocode({
                     address: scope.endPoint
@@ -120,11 +124,13 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
 
             scope.init();
 
+            // scope.mode = {{mode}};
+
             scope.getDirections = function () {
                 var request = {
                     origin: scope.origin,
                     destination: scope.endPoint,
-                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                    travelMode: google.maps.DirectionsTravelMode.TRANSIT
                 };
                 directionsService.route(request, function (response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {

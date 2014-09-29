@@ -3,3 +3,33 @@ th {
   text-decoration: underline;
   font-size: 1.3em;
 }
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.pink {
+  color: purple;
+}
+
+.legend span {
+  font-size: 1.3em;
+}
+
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 150px;
+    text-align: center;
+    text-transform: lowercase;
+}
