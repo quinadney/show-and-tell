@@ -1,12 +1,12 @@
 <div class="jumbotron text-center">
   <h1>Google Maps</h1>
 
-  <p>{{tagline}}  {{mode}}  {{routeParams}}</p>
+  <p><span style="text-transform: lowercase;">{{hello}}</span> Directions</p>
 
-
+<div class="row">
   <form novalidate name="mapContainer" class="mapContainer panel">
       <div class="directions" ng-show="directions || directions==undefined"> 
-      <label>Origin: {{mode}}</label> 
+      <label>Origin:</label> 
       <input type="text" ng-model="origin" name="origin"  required> 
       <!-- <small class="error" id="wrongAddress">Error: \n   -->
       <!-- <span>Sorry this is not a valid address.</span>  -->
@@ -15,15 +15,19 @@
       <input ng-model="endPoint" type="text" disabled> 
       <button class="getDirections" ng-click="getDirections()" ng-disabled="mapContainer.$invalid">Get Directions</button>  
       <!-- <button class="clearDirections alert" ng-click="clearDirections()" ng-disabled="mapContainer.$invalid">Clear</button>  -->
-      <div id="theMap"></div> 
-
-      <div id="directionsList"></div> 
+      <div class="col-md-8">
+        <div id="theMap"></div> 
+      </div>
+      <div class="col-md-4" style="height:350px;overflow:auto">
+        <div id="directionsList"></div> 
+      </div>
   </form>
+</div>
 
   <style> 
   #theMap {
       width:100%;
-      height:300px;
+      height:350px;
       background:#ccc;
       margin: 5px 0;
   }

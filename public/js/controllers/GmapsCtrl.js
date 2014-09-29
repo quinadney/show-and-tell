@@ -11,7 +11,8 @@ angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', funct
   $scope.longitude = $routeParams.long;
   console.log($scope.latitude, $scope.longitude);
   $scope.routeParams = $routeParams;
-  $scope.mode = $routeParams.transport;
+  $scope.hello = $routeParams.transportation;
+  console.log($scope.hello);
 
 
 var directionsDisplay = new google.maps.DirectionsRenderer(),
@@ -36,6 +37,7 @@ var directionsDisplay = new google.maps.DirectionsRenderer(),
         $scope.origin = localStorage.getItem('latitude') + ', ' + localStorage.getItem('longitude');
         $scope.endPoint = $scope.latitude + ', ' + $scope.longitude;
         $scope.destination !== undefined ?$scope.destination : '1803 E 18th St, Austin TX 78702';
+        // $scope.hello = $routeParams.transportation;
         //$scope.mode = {{mode}}
 
         geocoder.geocode({
@@ -63,4 +65,29 @@ var directionsDisplay = new google.maps.DirectionsRenderer(),
             }
         });
     })();
+
+$scope.TransportationMode = 'google.maps.DirectionsTravelMode.' + $scope.hello;
+
+    $scope.getDirections = function () {
+        console.log('hello', $scope.hello);
+        var request = {
+            origin: $scope.origin,
+            destination: $scope.endPoint,
+            travelMode: google.maps.DirectionsTravelMode[$scope.hello],
+            provideRouteAlternatives: true 
+        };
+        directionsService.route(request, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response)
+                document.getElementById('wrongAddress').style.display = "none";
+            } else {
+                document.getElementById('wrongAddress').style.display = "block";
+            }
+        });
+        directionsDisplay.setMap(map);
+
+        directionsDisplay.setPanel(document.getElementById('directionsList'));
+
+    };
+
 });

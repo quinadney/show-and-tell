@@ -55,7 +55,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     transportation: 'DRIVING'
   })
 
-  .when('/gmaps/:lat/:long/:method', {
+  .when('/gmaps/:lat/:long/:transportation', {
     templateUrl: 'views/gmaps.html',
     controller: 'GmapsController',
   })
