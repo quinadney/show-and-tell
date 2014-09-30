@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', function($scope, $http, $routeParams) {
+angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', function($scope, $http, $routeParams, LS) {
 
 // (function getVenue() {
 //     var promise = $http.get('https://api.foursquare.com/v2/venues/search?ll=' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&categoryID=4d4b7104d754a06370d81259&query=' + $scope.venue + '&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
@@ -25,6 +25,14 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
           $scope.upcomingEvents = (data.resultsPage.results.event);
         });
     });
+  };
+
+  $scope.submitCity = function(data) {
+    LS.setCity(data);
+  };
+
+  $scope.getCity = function() {
+    console.log(LS.getCity());
   };
 
   $scope.getClass = function(event) {

@@ -1,6 +1,13 @@
 <link rel="stylesheet" type="text/css" href="../css/localVenues.css">
+<link rel="stylesheet" type="text/css" href="../css/loader.css">
 <div class="jumbotron text-center">
+  <div class="loader">Loading...</div>
   <h1>{{city}} Locality</h1>
+
+  <form ng-submit="submitCity(newcity)">
+    <input type="text" ng-model="newcity">
+  </form>
+  <button ng-click="getCity()"></button>
 
   <div class="row">
     <div class="col-md-12">
