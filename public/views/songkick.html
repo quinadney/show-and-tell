@@ -19,13 +19,13 @@
         <th>Spotify Stream</th>
         <th>Similar Artists</th>
         <th>Upcoming Tour</th>        
-        <th>Touring in {{city}}?</th>
+        <!-- <th>Touring in {{city}}?</th> -->
       </tr>
       <tr ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
         <td><a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play fa-1x"></i></a></td>
         <td>{{artist.displayName}}</td>
-        <td><a ng-click='toggleTour(artist)'>Dates</a></td>
-        <td>{{artist.currentCity}}</td>
+        <td><a ng-click='toggleTour(artist)'>Dates {{artist.currentCity}}</a></td>
+        <!-- <td>{{artist.currentCity}}</td> -->
         <!--!!!!!! link spotify link to ng-click function that calls for an artist ID AND links to that id !!!!!!!-->
       </tr>
     </table>  

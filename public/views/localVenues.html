@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="../css/localVenues.css">
 <link rel="stylesheet" type="text/css" href="../css/loader.css">
 <div class="jumbotron text-center">
-  <div class="loader">Loading...</div>
+  <!-- <div class="loader">Loading...</div> -->
   <h1>{{city}} Locality</h1>
 
   <form ng-submit="submitCity(newcity)">
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-12">
      
-     <div class="col-md-6" style="height:470px;overflow:auto;padding:1em;">
+     <div class="col-md-6" style="height:470px;overflow:scroll;padding:1em;">
       <table width="100%">
         <h3>Venues in {{city}}</h3>
         <tr>
@@ -26,7 +26,7 @@
       </table>  
      </div>
 
-     <div class="col-md-6" style="height:470px;overflow:auto;border-left:solid 1px;padding:1em;color:black">
+     <div class="col-md-6" style="height:470px;overflow:scroll;border-left:solid 1px;padding:1em;color:black">
       <table width="100%">
         <h3>All Upcoming Events in {{city}}</h3>
         <tr>

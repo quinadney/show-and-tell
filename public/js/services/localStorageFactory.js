@@ -2,6 +2,7 @@
 
 angular.module('LocalStorage', []).factory('LS', function($window, $rootScope) {
   angular.element($window).on('storage', function(event) {
+    console.log('hello');
     if (event.key === 'my-storage') {
       $rootScope.$apply();
     }

@@ -1,4 +1,6 @@
 angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope, $route, $routeParams) {
+  $scope.tourModal = false;
+
   $scope.tagline = "Let's get you that map...";
   $scope.map = {
       center: {

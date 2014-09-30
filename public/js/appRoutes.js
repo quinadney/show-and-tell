@@ -12,16 +12,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     templateUrl: 'views/gmaps.html',
     controller: 'GmapsController'
   })
-  
-  // .when('/gmaps2', {
-  //   templateUrl: 'views/gmaps2.html',
-  //   controller: 'GmapsController'
-  // })
-
-  // .when('/gmaps3', {
-  //   templateUrl: 'views/gmaps3.html',
-  //   controller: 'GmapsController'
-  // })
 
   .when('/songkick', {
     templateUrl: 'views/songkick.html',

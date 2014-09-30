@@ -1,20 +1,23 @@
 'use strict';
 
 angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', function($scope, $http, $sce, $location, $q) {
+  $scope.artistId = '';
+  $scope.recommendedArtists = [];  
   $scope.tagline = 'Show me touring artists like:';
 
+  //Helper function to filter recommended artists
   function isTouring(band) {
     if (band.onTourUntil !== null) {return band;}
   }
 
-  $scope.artistId = '';
-  $scope.recommendedArtists = [];
-
-  // Is there an easier way to follow this flow?? Callbacks????
   $scope.getArtist = function() {
     ////////////////// reset recommendedArtist array
     $scope.recommendedArtists = [];
     // Get artist ID
+
+    ////// Check if $scope.artist exists in localStorage ///////
+
+
     var query = $http.get('http://api.songkick.com/api/3.0/search/artists.json?query=' + $scope.artist + '&apikey=QEwCZke1ncpF2MnG');
     // reset artist field
     // $scope.artist = '';
@@ -33,14 +36,14 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
       console.log('Response:', responses);
 
       for (var x = 0; x < responses.length; x++) {
-        $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring).slice(0,33));
+        $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring).slice(0,3));
       }
 
       //loop through recommended artists and pull tour info for each
       for (var i = 0; i < $scope.recommendedArtists.length; i++) {
         // IFFI (i) to pass the number it's looping through with the rest of the async calls
         (function(i) {
-          $scope.recommendedArtists[i].currentCity = 'No';
+          $scope.recommendedArtists[i].currentCity = null;
           console.log($scope.recommendedArtists[i]);
           var promise = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json?apikey=QEwCZke1ncpF2MnG');
           
@@ -50,7 +53,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
             for (var j = 0; j < data.resultsPage.results.event.length; j++) {
               
-              /////// Parse date in different format!!!!!!!!!!!!!
+              /////// Parse date in different format!!!????!!!!!
               // var newDate = data.resultsPage.results.event.start.date.split('-');
               // var date = new Date(year, month, day)
               // data.resultsPage.results.event.start.date = newDate;
@@ -58,7 +61,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
               $scope.recommendedArtists[i].tour = data.resultsPage.results.event;
 
               if (data.resultsPage.results.event[j].venue.metroArea.displayName === 'Austin') {
-                $scope.recommendedArtists[i].currentCity = 'Yes!'; 
+                $scope.recommendedArtists[i].currentCity = '(Touring in ' + $scope.city + '!)'; 
                 console.log($scope.recommendedArtists[i]); 
                 console.log($scope.recommendedArtists[i].currentCity);
               }
@@ -67,26 +70,6 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
         })(i);
       }
     });
-      // suggestions.success(function(data) {
-      //   $scope.recommendedArtists = $scope.recommendedArtists.concat(data.resultsPage.results.artist.filter(isTouring).slice(0,3));
-      //   console.log('first:', $scope.recommendedArtists);
-
-      //   suggestions2.success(function(data) {
-      //     $scope.recommendedArtists = $scope.recommendedArtists.concat(data.resultsPage.results.artist.filter(isTouring).slice(0,3));
-      //     console.log('second:', $scope.recommendedArtists);
-
-      //     suggestions3.success(function(data) {
-      //       $scope.recommendedArtists = $scope.recommendedArtists.concat(data.resultsPage.results.artist.filter(isTouring).slice(0,3));
-      //       console.log('third:', $scope.recommendedArtists);
-          
-      //     });
-      //   });     
-
-        // $q.all(promises).then(function(promisesData) {
-        //   $scope.whatever = promisesData;
-        // });
-  //     });
-  //   });
   };
 
   // $scope.getLocation = function() {
