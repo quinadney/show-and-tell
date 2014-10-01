@@ -34,31 +34,33 @@
   </div>
 
 
-  <modal-dialog show='modalShown' width='750px' height='90%'>
+  <modal-dialog show='modalShown' width='50%' height='80%'>
    <p style="color:white">Check Out Music By: {{modalArtist}}</p>
-   <iframe ng-src="{{spotifyEmbedURL}}" width="600px" height="600px" frameborder="0" allowtransparency="true"></iframe>
+   <div class="spotifyEmbed"><iframe ng-src="{{spotifyEmbedURL}}" width="600px" height="450px" frameborder="0" allowtransparency="true"></iframe></div>
   </modal-dialog>
-
+<!-- 
   <modal-dialog show='loadingModal' width='30%' height='30%'>
    <p style="color:white">Check Out Music By: {{modalArtist}}</p>
-  </modal-dialog>
+  </modal-dialog> -->
 
-  <modal-dialog show='tourModal' width='750px' height='90%'>
+  <modal-dialog show='tourModal' width='70%' height='90%'>
    <p style="color:white">Tour Dates for: <em>{{artistName}}</em></p>
    <div>
     <!-- <p>{{tour}}</p> -->
     <div class="tour-table" style="height:500px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
     <!-- <p ng-repeat="tour in artistTour">{{tour}}</p> -->
-      <table width="100%">
+      <table width="100%" class = "artistTour">
         <tr>
-          <th>Date</th>
+          <!-- <th>Date</th> -->
+          <th>Name</th>
           <th>Venue</th>
           <th>City</th>
           <th>Directions</th>
         </tr>
         <tr ng-repeat="tour in artistTour" ng-class="getClass(tour)">
-          <td>{{tour.start.date}}</td>
-          <td><a ng-click='getVenue(tour.venue.displayName, tour.venue.id)'  class="modalLink">{{tour.venue.displayName}}</a></td>
+          <!-- <td>{{tour.start.date}}</td> -->
+          <td>{{tour.displayName}}</td>
+          <td><a ng-click='getVenue(tour.venue.displayName, tour.location.lat, tour.location.lng)'  class="modalLink">{{tour.venue.displayName}}</a></td>
           <td>{{tour.location.city}}</td>
           <td>
             <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
@@ -78,7 +80,7 @@
       <span style="color:blue"> 14+ = Blue </span>
       <span style="color:red"> 21+ = Red </span>
     </div>
-  </div>
+     </div>
   </modal-dialog>
 
 </div>

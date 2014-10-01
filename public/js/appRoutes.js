@@ -73,17 +73,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
   //   controller: 'GmapsController',
   // })
 
-  .when('/venue', {
-    templateUrl: 'views/venue.html',
-    controller: 'VenueController'
-  })
+  // .when('/venue', {
+  //   templateUrl: 'views/venue.html',
+  //   controller: 'VenueController'
+  // })
 
-  .when('/venue/:venue', {
-    templateUrl: 'views/venue.html',
-    controller: 'VenueController'
-  })
+  // .when('/venue/:venue', {
+  //   templateUrl: 'views/venue.html',
+  //   controller: 'VenueController'
+  // })
 
-  .when('/venue/:venue/:id', {
+  .when('/venue/:venue/:lat/:long', {
     templateUrl: 'views/venue.html',
     controller: 'VenueController'
   })

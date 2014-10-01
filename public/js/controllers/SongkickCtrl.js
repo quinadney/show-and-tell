@@ -116,9 +116,11 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
   $scope.tourModal = false;
 
   $scope.toggleTour = function(artist) {
+    console.log('tour', artist);
     $scope.artistTour = artist.tour;
     $scope.tourModal = !$scope.tourModal;
     $scope.artistName = artist.displayName;
+    console.log($scope.tourModal);
   };
 
   $scope.getClass = function(tour) {
@@ -152,8 +154,8 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     $location.path(('/gmaps/' + lat + '/' + long + '/' + type));
   };
 
-  $scope.getVenue = function(venue, id) {
-    $location.path(('/venue/' + venue + '/' + id));
+  $scope.getVenue = function(venue, lat, long) {
+    $location.path(('/venue/' + venue + '/' + lat + '/' + long));
   };
 
 

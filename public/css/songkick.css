@@ -7,9 +7,17 @@ th {
 td {
   text-align: left;
 }
+/*
+.artistTour th, td {
+  text-align: center;
+}*/
 
 .similarArtists p {
   text-align: center;
+}
+
+.spotifyEmbed {
+  height: 80%;
 }
 
 .green {
