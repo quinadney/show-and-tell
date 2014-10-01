@@ -4,17 +4,24 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
   $scope.artistId = '';
   $scope.recommendedArtists = [];  
   $scope.tagline = 'Show me touring artists like:';
-
+  // $scope.loadingModal = false;
   //Helper function to filter recommended artists
   function isTouring(band) {
     if (band.onTourUntil !== null) {return band;}
   }
-
   $scope.getArtist = function() {
+    // $scope.$apply(funtion(){
+    //   $scope.loadingModal = true;
+    // });
+
+
+    // console.log($scope.loadingModal);
     ////////////////// reset recommendedArtist array
     $scope.recommendedArtists = [];
     // Get artist ID
 
+    //Show's table head
+    $scope.recommendedList = true;
     ////// Check if $scope.artist exists in localStorage ///////
 
 
@@ -32,21 +39,26 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
       return $q.all([suggestions, suggestions2, suggestions3]);
     })
-    .then(function (responses) {
+    .then(function (responses, fail) {
       console.log('Response:', responses);
+      console.log('Fail', fail);
 
       for (var x = 0; x < responses.length; x++) {
         $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring).slice(0,3));
       }
 
       //loop through recommended artists and pull tour info for each
+      // var allTours = [];
       for (var i = 0; i < $scope.recommendedArtists.length; i++) {
         // IFFI (i) to pass the number it's looping through with the rest of the async calls
         (function(i) {
           $scope.recommendedArtists[i].currentCity = null;
           console.log($scope.recommendedArtists[i]);
           var promise = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json?apikey=QEwCZke1ncpF2MnG');
-          
+          // allTours.push(promise);
+          // console.log(allTours)
+
+          // return $q.all(allTours
 
           promise.success(function(data) {
             console.log(data);
@@ -67,9 +79,11 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
               }
             }
           });
+
         })(i);
       }
     });
+    // $scope.loadingModal = false;
   };
 
   // $scope.getLocation = function() {
@@ -107,6 +121,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
   };
 
   $scope.getClass = function(tour) {
+    if (tour.location.city.indexOf('Austin') > -1 && tour.type === 'Festival') {return 'orange';}
     if (tour.location.city.indexOf('Austin') > -1) {return 'pink';}
     if (tour.ageRestriction === '14+') {return 'blue';}
     if (tour.ageRestriction === '21+') {return 'red';}

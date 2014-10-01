@@ -4,8 +4,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
   // home page
   .when('/', {
-    templateUrl: 'views/songkick.html',
-    controller: 'SongkickController'
+    templateUrl: 'views/home.html',
+    controller: 'MainController'
   })
 
   .when('/gmaps', {

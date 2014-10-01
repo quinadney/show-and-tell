@@ -1,7 +1,15 @@
 th {
-  text-align: center;
+  text-align: left;
   text-decoration: underline;
   font-size: 1.3em;
+}
+
+td {
+  text-align: left;
+}
+
+.similarArtists p {
+  text-align: center;
 }
 
 .green {
@@ -20,9 +28,25 @@ th {
   color: purple;
 }
 
+.orange {
+  color: orange;
+}
+
 .legend span {
   font-size: 1.3em;
 }
+
+a {
+  color: inherit;
+}
+/*
+a:link {
+    color: #FF0000;
+}
+a:hover {
+    color: #FF00FF;
+}
+*/
 
 input {
     border: 0;

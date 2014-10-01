@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../css/songkick.css">
-<div class="jumbotron text-center">
-  <h1>Show and Tell</h1>
+<div class="jumbotron text-center" style="opacity: 0.9;">
+  <h1>Similar Artists</h1>
 
   <div class="headline">
     <form ng-submit="getArtist()">
@@ -13,22 +13,12 @@
 
  
 
-  <div class="songkick-table" style="height:300px;overflow:auto;border:solid 1px;padding:1em;margin:1em">
-    <table width="100%">
-      <tr>
-        <th>Spotify Stream</th>
-        <th>Similar Artists</th>
-        <th>Upcoming Tour</th>        
-        <!-- <th>Touring in {{city}}?</th> -->
-      </tr>
-      <tr ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
-        <td><a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play fa-1x"></i></a></td>
-        <td>{{artist.displayName}}</td>
-        <td><a ng-click='toggleTour(artist)'>Dates {{artist.currentCity}}</a></td>
-        <!-- <td>{{artist.currentCity}}</td> -->
-        <!--!!!!!! link spotify link to ng-click function that calls for an artist ID AND links to that id !!!!!!!-->
-      </tr>
-    </table>  
+  <div class="songkick-table" style="height:300px;overflow:auto;padding:1em;margin:1em">
+    <div class="similarArtists">
+      <p ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
+        <a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play-circle-o fa-1x"></i>  {{artist.displayName}}</a> -- <a ng-click='toggleTour(artist)'>Dates {{artist.currentCity}}</a>
+      </p>
+    </div>
   </div>
 
 
@@ -37,11 +27,15 @@
    <iframe ng-src="{{spotifyEmbedURL}}" width="600px" height="600px" frameborder="0" allowtransparency="true"></iframe>
   </modal-dialog>
 
+  <modal-dialog show='loadingModal' width='30%' height='30%'>
+   <p style="color:white">Check Out Music By: {{modalArtist}}</p>
+  </modal-dialog>
+
   <modal-dialog show='tourModal' width='750px' height='90%'>
    <p style="color:white">Tour Dates for: <em>{{artistName}}</em></p>
    <div>
     <!-- <p>{{tour}}</p> -->
-    <div class="tour-table" style="height:550px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
+    <div class="tour-table" style="height:500px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
     <!-- <p ng-repeat="tour in artistTour">{{tour}}</p> -->
       <table width="100%">
         <tr>
@@ -52,20 +46,21 @@
         </tr>
         <tr ng-repeat="tour in artistTour" ng-class="getClass(tour)">
           <td>{{tour.start.date}}</td>
-          <td><a ng-click='getVenue(tour.venue.displayName, tour.venue.id)'>{{tour.venue.displayName}}</a></td>
+          <td><a ng-click='getVenue(tour.venue.displayName, tour.venue.id)'  class="modalLink">{{tour.venue.displayName}}</a></td>
           <td>{{tour.location.city}}</td>
           <td>
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')"><i class="fa fa-bicycle"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'TRANSIT')"><i class="fa fa-bus"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'WALKING')"><i class="fa fa-male"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'DRIVING')"><i class="fa fa-car"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')"><i class="fa fa-plane"></i></a>
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'DRIVING')" class="modalLink"><i class="fa fa-car"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')" class="modalLink"><i class="fa fa-plane"></i></a>
             <!-- <i class="fa fa-rocket"></i> -->
           </td>
         </tr>
       </table>  
     </div>
     <div class="legend">
+      <span style="color:orange"> Festival in {{city}} = Orange </span>
       <span style="color:purple"> {{city}} = Purple </span>
       <span style="color:green"> Festival = Green </span>
       <span style="color:blue"> 14+ = Blue </span>
