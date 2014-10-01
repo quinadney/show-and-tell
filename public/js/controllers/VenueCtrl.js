@@ -39,10 +39,16 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
     });
   })(); // immediately call function on load
 
-// $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
-//   .success(function(data) {
-//     console.log('venue: ', data);
-//   });
+$http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
+  .success(function(data) {
+    // console.log('venue: ', data);
+    $scope.songkickID = data.resultsPage.results.venue[0].id;
+    $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+      .success(function(data) {
+        $scope.upcomingEvents = data.resultsPage.results.event;
+        console.log('upcoming events:', data);
+      });
+  });
 
   // if ($scope.songkickID) {
   //   $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
