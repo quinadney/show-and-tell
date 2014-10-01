@@ -41,8 +41,9 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
 
 $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
   .success(function(data) {
-    // console.log('venue: ', data);
+    console.log('venue: ', data);
     $scope.songkickID = data.resultsPage.results.venue[0].id;
+    $scope.venuePic = data.resultsPage.results.venue[0]
     $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
         $scope.upcomingEvents = data.resultsPage.results.event;
