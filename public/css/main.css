@@ -40,4 +40,16 @@ img {
   max-height:100%;
 }
 
+div .show {
+  text-align: left;
+  height: 55px;
+}
 
+div .tell {
+  text-align: right;
+  height: 55px;
+}
+
+h3 {
+  font-size: 1.8em !important;
+}

@@ -3,21 +3,59 @@
 angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', function($scope, $http, $routeParams, LS) {
 
   $scope.upcomingEvents = [];
+  $scope.city = localStorage.getItem('currentCity');
+
+  if (($scope.cityID === null) || ($scope.city === null)) {
+    console.log('ya');
+    (function(){
+      $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
+        .success(function(data) {
+          console.log('city data', data);
+
+          $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
+          $scope.cityID = data.resultsPage.results.location[0].metroArea.id;
+          
+          localStorage.setItem('currentCity', $scope.city);
+          localStorage.setItem('currentCityID', $scope.cityID);
+
+          $scope.getCurrentCity();
+        });
+
+        $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+          .success(function(data) {
+            $scope.upcomingEvents = (data.resultsPage.results.event);
+          });
+    })();
+  } else {
+    console.log('no');
+    $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+      .success(function(data) {
+        $scope.upcomingEvents = (data.resultsPage.results.event);
+      });
+  }
+
+
 
   $scope.getCurrentCity = function() {
-    var promise = $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + $scope.location.latitude + ',' + $scope.location.longitude + '&apikey=QEwCZke1ncpF2MnG');
-    promise.success(function(data) {
-      console.log('city data', data);
-      $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
-      $scope.cityID = data.resultsPage.results.location[0].metroArea.id;
-      
-      localStorage.setItem('currentCity', $scope.city);
+    if ($scope.city === null) {
+      (function(){
+        $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + $scope.location.latitude + ',' + $scope.location.longitude + '&apikey=QEwCZke1ncpF2MnG')
+          .success(function(data) {
+            console.log('city data', data);
 
-      $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
-        .success(function(data) {
-          $scope.upcomingEvents = (data.resultsPage.results.event);
-        });
-    });
+            $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
+            $scope.cityID = data.resultsPage.results.location[0].metroArea.id;
+            
+            localStorage.setItem('currentCity', $scope.city);
+            localStorage.setItem('currentCityID', $scope.cityID);
+          });
+      })();
+    }
+
+    $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+      .success(function(data) {
+        $scope.upcomingEvents = (data.resultsPage.results.event);
+      });
   };
 
   $scope.submitCity = function(data) {
@@ -41,16 +79,16 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
       });
     })();
 
-  function locationDefined() {
-    return $scope.location.longitude && $scope.location.latitude;
-  }
+  // function locationDefined() {
+  //   return $scope.location.longitude && $scope.location.latitude;
+  // }
 
-  if (locationDefined() && !localStorage.getItem('city')) {
+  if ($scope.city) {
     $scope.getCurrentCity();
   } else {
     $scope.$watch('location', function(oldValue, newValue) {
       if (oldValue !== newValue) {
-        if (locationDefined()) {
+        if ($scope.city) {
           $scope.getCurrentCity();
         }
       }
