@@ -31,10 +31,19 @@
         <tr>
           <th>Name</th>
           <th>Address</th>
+          <th>Directions</th>
         </tr>
         <tr ng-repeat="venue in localVenues">
-          <td><a ng-href="{{uri}}">{{venue.displayName}}</a></td>
+          <td><a ng-click='getVenue(venue.displayName, venue.lat, venue.lng)'>{{venue.displayName}}</a></td>
           <td>{{venue.street}}, {{venue.zip}}</td>
+          <td>
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
+            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'DRIVING')" class="modalLink"><i class="fa fa-car"></i></a>  
+<!--             <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')" class="modalLink"><i class="fa fa-plane"></i></a>
+ -->            <!-- <i class="fa fa-rocket"></i> -->
+          </td>
         </tr>
       </table>  
      </div>
@@ -48,8 +57,8 @@
           <th>Date</th>
         </tr>
         <tr ng-repeat="event in upcomingEvents" ng-class="getClass(event)">
-          <td>{{event.performance[0].artist.displayName}}</td>
-          <td>{{event.venue.displayName}}</td>
+          <td>{{event.performance[0].displayName}}</td>
+          <td><a ng-click='getVenue(event.venue.displayName, event.venue.lat, event.venue.lng)'>{{event.venue.displayName}}</a></td>
           <td>{{event.start.date}}</td>
         </tr>
       </table>  

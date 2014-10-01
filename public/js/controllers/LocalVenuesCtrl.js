@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', function($scope, $http, $routeParams, LS) {
+angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', function($scope, $http, $routeParams, LS, $location) {
 
   $scope.upcomingEvents = [];
   $scope.city = localStorage.getItem('currentCity');
@@ -29,6 +29,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
     // console.log('no');
     $http.get('http://api.songkick.com/api/3.0/metro_areas/' + localStorage.getItem('currentCityID') + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
+        console.log('dataaa', data);
         $scope.upcomingEvents = (data.resultsPage.results.event);
       });
     getLocalVenues();
@@ -51,10 +52,14 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
     console.log('trying');
     $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=austin,tx&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
-        // console.log(data);
+        console.log(data);
         $scope.localVenues = data.resultsPage.results.venue;
       });
     }
+
+  $scope.getVenue = function(venue, lat, long) {
+    $location.path(('/venue/' + venue + '/' + lat + '/' + long));
+  };
 
   // function locationDefined() {
   //   return $scope.location.longitude && $scope.location.latitude;
