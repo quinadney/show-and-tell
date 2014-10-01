@@ -14,7 +14,8 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     //   $scope.loadingModal = true;
     // });
 
-
+    if  (localStorage.getItem('currentCity') === null) {alert("One second please..."); return;}
+    $scope.city = localStorage.getItem('currentCity');
     // console.log($scope.loadingModal);
     ////////////////// reset recommendedArtist array
     $scope.recommendedArtists = [];
@@ -128,33 +129,22 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     if (tour.type === 'Festival') {return 'green';}
   };
 
-  $scope.getCurrentCity = function() {
-    var promise = $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + $scope.location.latitude + ',' + $scope.location.longitude + '&apikey=QEwCZke1ncpF2MnG');
-    promise.success(function(data) {
-      console.log(data);
-      $scope.city = localStorage.getItem('currentCity');
-      // $scope.city = data.resultsPage.results.location[0].metroArea.displayName;
-      localStorage.setItem('currentCity', $scope.city);
 
-      console.log($scope.city);
-    });
-  };
+  // function locationDefined() {
+  //   return $scope.location.longitude && $scope.location.latitude;
+  // }
 
-  function locationDefined() {
-    return $scope.location.longitude && $scope.location.latitude;
-  }
-
-  if (locationDefined()) {
-    $scope.getCurrentCity();
-  } else {
-    $scope.$watch('location', function(oldValue, newValue) {
-      if (oldValue !== newValue) {
-        if (locationDefined()) {
-          $scope.getCurrentCity();
-        }
-      }
-    }, true);
-  }
+  // if (locationDefined()) {
+  //   $scope.getCurrentCity();
+  // } else {
+  //   $scope.$watch('location', function(oldValue, newValue) {
+  //     if (oldValue !== newValue) {
+  //       if (locationDefined()) {
+  //         $scope.getCurrentCity();
+  //       }
+  //     }
+  //   }, true);
+  // }
 
 
   $scope.getMap = function(lat, long, type) {
