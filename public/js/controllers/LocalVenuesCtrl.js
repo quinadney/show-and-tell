@@ -61,6 +61,12 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
     $location.path(('/venue/' + venue + '/' + lat + '/' + long));
   };
 
+  $scope.getMap = function(lat, long, type) {
+    console.log(lat, long);
+    $location.path(('/gmaps/' + lat + '/' + long + '/' + type));
+  };
+
+
   // function locationDefined() {
   //   return $scope.location.longitude && $scope.location.latitude;
   // // }

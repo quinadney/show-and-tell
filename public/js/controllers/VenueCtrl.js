@@ -11,7 +11,6 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
   console.log($scope.songkickID);
   console.log($scope.venue);
 
-  // {{place.photos.groups[0].items[5].prefix}}{{place.photos.groups[0].items[5].suffix}}
 
   (function getVenue() {
     var promise = $http.get('https://api.foursquare.com/v2/venues/search?ll=' + $scope.venueLat + ',' + $scope.venueLong + '&categoryID=4d4b7104d754a06370d81259&query=' + $scope.venue + '&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
@@ -40,19 +39,17 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
     });
   })(); // immediately call function on load
 
+// $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
+//   .success(function(data) {
+//     console.log('venue: ', data);
+//   });
 
-  // $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
-  //   .success(function(data) {
-  //     $scope.venueEvents = data.resultsPage.results.event;
-  //   });
-
-
-  if ($scope.songkickID) {
-    $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
-      .success(function(data) {
-        $scope.upcomingEvents = data.resultsPage.results.event;
-        console.log(data);
-      });
-  }
+  // if ($scope.songkickID) {
+  //   $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+  //     .success(function(data) {
+  //       $scope.upcomingEvents = data.resultsPage.results.event;
+  //       console.log('upcoming events:', data);
+  //     });
+  // } else {console.log('need songkickID');}
 
 });

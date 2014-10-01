@@ -37,10 +37,10 @@
           <td><a ng-click='getVenue(venue.displayName, venue.lat, venue.lng)'>{{venue.displayName}}</a></td>
           <td>{{venue.street}}, {{venue.zip}}</td>
           <td>
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
-            <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'DRIVING')" class="modalLink"><i class="fa fa-car"></i></a>  
+            <a ng-click="getMap(venue.lat, venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
+            <a ng-click="getMap(venue.lat, venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
+            <a ng-click="getMap(venue.lat, venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
+            <a ng-click="getMap(venue.lat, venue.lng, 'DRIVING')" class="modalLink"><i class="fa fa-car"></i></a>  
 <!--             <a ng-click="getMap(tour.venue.lat, tour.venue.lng, 'plane')" class="modalLink"><i class="fa fa-plane"></i></a>
  -->            <!-- <i class="fa fa-rocket"></i> -->
           </td>

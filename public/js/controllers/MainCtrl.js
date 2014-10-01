@@ -1,14 +1,22 @@
 'use strict';
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
+  ///////////////////////////////////Delete?/////////////////////////////////
   $scope.location = {
     latitude: undefined,
     longitude: undefined
   };
   
-  function successCallback(position) {
+  // Clear local storage after a day to ensure better geolocation over extended use.
+  if ((parseInt(Date.now()) - parseInt(localStorage.getItem('storageDate'))) > 86400000) {
+    localStorage.clear();
+  } else { 
+    console.log(parseInt(Date.now()) - parseInt(localStorage.getItem('storageDate')));
   }
-  
+
+  // Check if latitude/longitude exist and create if not; same with city(ID) but that is reliant on lat/long, so after
   if (!localStorage.getItem('latitude') || !localStorage.getItem('longitude')) {  
+    console.log('umm');
+    localStorage.setItem('storageDate', Date.now());
     navigator.geolocation.getCurrentPosition(function(position) {
       $scope.$apply(function() {
         console.log('gotcha');
@@ -46,7 +54,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
     });
   }
 
-
+///////////////////For bootstrap dropdown that hasn't been used yet?/////////////////////
   $scope.status = {
     isopen: false
   };

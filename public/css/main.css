@@ -34,7 +34,7 @@ div .col-md-6 {
   height:400px;
 }
 
-img {
+.pic img {
   width:100%;
   height:auto;
   max-height:100%;
@@ -46,10 +46,14 @@ div .show {
 }
 
 div .tell {
-  text-align: right;
+  text-align: center;
   height: 55px;
 }
 
 h3 {
-  font-size: 1.8em !important;
+  font-size: 1.7em !important;
+}
+
+html {
+  background-color: #f0f0f0;
 }
