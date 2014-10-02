@@ -5,12 +5,9 @@ angular.module('showAndTellApp', [
   'appRoutes', 
   'SongkickCtrl',
   'MainCtrl', 
-  // 'NerdCtrl', 
-  // 'NerdService', 
-  // 'GeekCtrl', 
-  // 'GeekService',
   'GmapsCtrl',
   'LocationCtrl',
   'VenueCtrl',
-  'LocalVenuesCtrl'
+  'LocalVenuesCtrl',
+  'slick'
   ]);
