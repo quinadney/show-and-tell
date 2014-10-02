@@ -18,7 +18,6 @@ module.exports = function(app) {
         res.json(nerds); // return all nerds in JSON format
     });
   });
-
   // route to handle creating (app.post)
   // route to handle delete (app.delete)
 

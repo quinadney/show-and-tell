@@ -54,18 +54,26 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
     });
   }
 
-///////////////////For bootstrap dropdown that hasn't been used yet?/////////////////////
-  $scope.status = {
-    isopen: false
-  };
 
-  $scope.toggled = function(open) {
-    console.log('Dropdown is now: ', open);
-  };
+  $scope.localPhoto = function() {
+    $scope.albumCovers = [];
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
+    $http.get('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=ee2ed1a1c901362b067bab4409e0a73e&format=json')
+      .success(function(data) {
+        var allArtists = data.artists.artist;
+        for (var y = 0; y < allArtists.length; y++) {
+          $scope.albumCovers.push(allArtists[y].image[4]["#text"]);
+        }
+      $scope.featuredArtist = $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)];
+      });
+
+    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('city') + ',skyline&tag_mode=all&sort=relevance')
+      .success(function(data) {
+        var allPhotos = data.photos.photo;
+        $scope.featuredLocalPhoto = allPhotos[Math.floor(Math.random()*allPhotos.length)];
+        $scope.picSrc = 'https://farm' + $scope.featuredLocalPhoto.farm + '.staticflickr.com/' + $scope.featuredLocalPhoto.server + '/' + $scope.featuredLocalPhoto.id + '_' + $scope.featuredLocalPhoto.secret + '.jpg';
+      });
+    };
+    
+    $scope.localPhoto();
 });

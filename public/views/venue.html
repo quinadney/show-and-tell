@@ -15,7 +15,7 @@
   
   <div class="row">
     <div class="col-md-12" ng-repeat="venue in selectedVenue">
-      <div class="col-md-3" ng-repeat="place in allVenueInfo">
+      <div class="col-md-3" style="height:400px" ng-repeat="place in allVenueInfo">
         <h1>{{selectedVenue[0].name}}</h1>
         <p><em>{{place.description}}</em></p>
         <!-- <p>Venue ID: {{venue.id}}</p> -->
@@ -42,7 +42,7 @@
   
   <br><br>
   <slick init-onload=true data="eventPhotos" infinite=true slides-to-show=6 slides-to-scroll=1>
-  <div ng-repeat="event in eventPhotos track by $index"><a ng-click="changePhoto(event)"><img ng-src={{event}}></a></div>
+  <div ng-repeat="event in eventPhotos track by $index" ng-click="changePhoto(event)"><a ng-click="changePhoto(event)"><img ng-src={{event}}></a></div>
   </slick>
 
 
