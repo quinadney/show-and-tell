@@ -47,14 +47,10 @@ td {
 a {
   color: inherit;
 }
-/*
-a:link {
-    color: #FF0000;
+
+label {
+  font-size: 1.3em;
 }
-a:hover {
-    color: #FF00FF;
-}
-*/
 
 input {
     border: 0;

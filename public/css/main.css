@@ -47,6 +47,9 @@ div .col-md-6 {
 .navbar {
   z-index:3;
   text-align: center;
+  top: 10px;
+  width: 230px;
+  margin-left: 40%;
 }
 
 .navbar-nav {

@@ -1,5 +1,5 @@
 .full-width-absolute {
-  position: absolute;
+  /*position: absolute;*/
   left: 20px;
   right: 20px;
 }
@@ -28,4 +28,8 @@ a:link {
 
 .slick-slider {
   margin-bottom: 0;
+}
+
+.col-md-5 {
+  top: 40px;
 }
