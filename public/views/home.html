@@ -1,19 +1,7 @@
- <nav class="navbar navbar-inverse">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/">Show and Tell</a>
-  </div>    
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-   <ul class="nav navbar-nav">
-     <li><a href="/#localVenues">Local Venues</a></li>
-     <li><a href="/#songkick">Recommendations</a></li>
-   </ul>
- </div>
-</nav>
-
 <div class="jumbotron text-center" style="opacity: .9;height:600px">
 
-  <!-- <p>Tell me your favorite musician and let me show you similar artists touring nearby.</p> -->
   <div class="row">
+
     <div class="col-md-6 show-and-tell town">
       <a ng-href="/#localVenues"><h4>Show Me The Music Scene Around Town</h4></a>
     </div>
@@ -21,13 +9,13 @@
        <a ng-href="/#songkick" ><h4>Tell Me About Similar Artists on Tour</h4></a>
     </div>
 
-    <a ng-href="/#localVenues"><div class="col-md-6 pic" style="background-image:url({{picSrc}}); background-size:425px 500px; background-repeat: no-repeat">
-      <!-- <img ng-src={{picSrc}}> -->
-    </div></a>
-    <a ng-href="/#songkick" ><div class="col-md-6 pic" style="background-image:url({{featuredArtist}}); background-size:425px 500px; background-repeat: no-repeat">
-      <!-- <img ng-src={{featuredArtist}}> -->
-    </div></a>
-  </div>
-</div>
+    <a ng-href="/#localVenues">
+      <div class="col-md-6 pic" style="background-image:url({{picSrc}}); background-size:425px 500px; background-repeat: no-repeat"></div>
+    </a>
+    <a ng-href="/#songkick">
+      <div class="col-md-6 pic" style="background-image:url({{featuredArtist}}); background-size:425px 500px; background-repeat: no-repeat"></div>
+    </a>
 
-<!-- <div id="pic"><img src="../images/austin.jpg"></div> -->
+  </div>
+  
+</div>

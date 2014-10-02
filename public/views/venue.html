@@ -1,16 +1,5 @@
 <link rel="stylesheet" type="text/css" href="../css/venue.css">
 
- <nav class="navbar navbar-inverse">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/">Show and Tell</a>
-  </div>    
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-   <ul class="nav navbar-nav">
-     <li><a href="/#localVenues">Local Venues</a></li>
-     <li><a href="/#songkick">Recommendations</a></li>
-   </ul>
- </div>
-</nav>
 <div class="jumbotron text-center full-width-absolute" style="opacity:0.9">
   
   <div class="row">
@@ -24,17 +13,16 @@
         <p>Check-ins: {{venue.stats.checkinsCount}}</p>
         <p>Phone: {{place.contact.formattedPhone}}</p>
         <p>
-          <a ng-href="{{place.url}}">Webpage</a> / 
           <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}">Facebook</a> / 
           <a ng-href="https://twitter.com/{{place.contact.twitter}}">Twitter</a>
         </p>
-        <p></p>
+        <p><a ng-href="{{place.url}}">Webpage</a></p>
       </div>
       <div class="col-md-5">
         <img ng-src="{{currentPic}}"/>
       </div>
       <div class="col-md-4" style="height:400px;overflow:auto;">
-        <h3>Upcoming Events:</h3>
+        <h2>Upcoming Events:</h2>
         <ul> <li ng-repeat="event in upcomingEvents" style="text-align:left">{{event.displayName}}</li></ul>
       </div>
     </div>
@@ -44,24 +32,4 @@
   <slick init-onload=true data="eventPhotos" infinite=true slides-to-show=6 slides-to-scroll=1>
     <div ng-repeat="event in eventPhotos track by $index" ng-click="changePhoto(event)" class="slick"><img ng-src={{event}}></div>
   </slick>
-
-
-  <!-- <div class="row">
-    <div class="col-md-12" ng-repeat="place in allVenueInfo">
-      <p><b>More Pictures:</b></p>
-      <img ng-src="{{photo1}}"/>
-      <img ng-src="{{photo2}}"/> 
-      <img ng-src="{{photo3}}"/>
-      <img ng-src="{{photo4}}"/> 
-      <img ng-src="{{photo5}}"/>
-      <img ng-src="{{photo6}}"/> 
-    </div>
-  </div> -->
-<!-- 
-  <div ng-repeat="venueEvent in venueEvents">
-    <p>{{venueEvent.performance.artist.displayName}}: {{venueEvent.start.date}}</p>
-  </div> -->
-<!-- <script src="libs/slick-carousel/slick/slick.js"></script> -->
-<!-- <script src="libs/angular-slick/dist/slick.js"></script> -->
-
 </div>

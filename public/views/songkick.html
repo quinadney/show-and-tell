@@ -1,15 +1,4 @@
 <link rel="stylesheet" type="text/css" href="../css/songkick.css">
-<nav class="navbar navbar-inverse">
- <div class="navbar-header">
-   <a class="navbar-brand" href="/">Show and Tell</a>
- </div>    
- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav">
-    <li><a href="/#localVenues">Local Venues</a></li>
-    <li><a href="/#songkick">Recommendations</a></li>
-  </ul>
-</div>
-</nav>
 
 <div class="jumbotron text-center" style="opacity: 0.9;">
   <h1>Similar Artists</h1>
@@ -25,7 +14,7 @@
 
  
 
-  <div class="songkick-table" style="height:500px;overflow:auto;padding:1em;margin:1em;">
+  <div class="songkick-table" style="height:400px;overflow:auto;padding:1em;margin:1em;">
     <div class="similarArtists">
       <p ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
         <a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play-circle-o fa-1x"></i>  <b>{{artist.displayName}}</b></a> -- <a ng-click='toggleTour(artist)'>Dates {{artist.currentCity}}</a>
