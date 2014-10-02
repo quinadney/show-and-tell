@@ -50,9 +50,9 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
 
   function getLocalVenues() {
     console.log('trying');
-    $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=austin,tx&apikey=QEwCZke1ncpF2MnG')
+    $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + localStorage.getItem('currentCity') + ',tx&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
-        console.log(data);
+        console.log('venues', data);
         $scope.localVenues = data.resultsPage.results.venue;
       });
     }
@@ -65,22 +65,4 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
     console.log(lat, long);
     $location.path(('/gmaps/' + lat + '/' + long + '/' + type));
   };
-
-
-  // function locationDefined() {
-  //   return $scope.location.longitude && $scope.location.latitude;
-  // // }
-
-  // if ($scope.city) {
-  //   $scope.getCurrentCity();
-  // } else {
-  //   $scope.$watch('location', function(oldValue, newValue) {
-  //     if (oldValue !== newValue) {
-  //       if ($scope.city) {
-  //         $scope.getCurrentCity();
-  //       }
-  //     }
-  //   }, true);
-  // }
-
 });

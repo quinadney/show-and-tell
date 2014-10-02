@@ -58,18 +58,20 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   $scope.localPhoto = function() {
     $scope.albumCovers = [];
 
-    $http.get('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=ee2ed1a1c901362b067bab4409e0a73e&format=json')
+    $http.get('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=ee2ed1a1c901362b067bab4409e0a73e&format=json&limit=30')
       .success(function(data) {
         var allArtists = data.artists.artist;
+        console.log('all artists', allArtists);
         for (var y = 0; y < allArtists.length; y++) {
           $scope.albumCovers.push(allArtists[y].image[4]["#text"]);
         }
       $scope.featuredArtist = $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)];
       });
 
-    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('currentCity') + ',skyline&tag_mode=all&sort=relevance')
+    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('currentCity') + ',music,skyline&tag_mode=all&sort=relevance&per_page=30')
       .success(function(data) {
         var allPhotos = data.photos.photo;
+        console.log('all photos', allPhotos);
         $scope.featuredLocalPhoto = allPhotos[Math.floor(Math.random()*allPhotos.length)];
         $scope.picSrc = 'https://farm' + $scope.featuredLocalPhoto.farm + '.staticflickr.com/' + $scope.featuredLocalPhoto.server + '/' + $scope.featuredLocalPhoto.id + '_' + $scope.featuredLocalPhoto.secret + '.jpg';
       });

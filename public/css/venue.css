@@ -30,6 +30,19 @@ a:link {
   margin-bottom: 0;
 }
 
+.col-md-3 {
+  padding-left: 3px;
+}
+
 .col-md-5 {
   top: 40px;
+  padding: 2px;
+}
+
+.col-md-4 {
+  padding: 2px;
+}
+
+.jumbotron {
+  padding-bottom: 20px;
 }

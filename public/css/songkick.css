@@ -2,15 +2,16 @@ th {
   text-align: left;
   text-decoration: underline;
   font-size: 1.3em;
+  color: white;
 }
 
 td {
   text-align: left;
+  color: white;
+  font-family: 'open-sans';
+  padding: 2px;
+  font-size: 1em;
 }
-/*
-.artistTour th, td {
-  text-align: center;
-}*/
 
 .similarArtists p {
   text-align: center;
@@ -40,8 +41,9 @@ td {
   color: orange;
 }
 
-.legend span {
-  font-size: 1.3em;
+.legend {
+  font-size: 1.2em;
+  color: #d5d5d5;
 }
 
 a {
@@ -49,7 +51,7 @@ a {
 }
 
 label {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 input {
@@ -60,4 +62,8 @@ input {
     width: 150px;
     text-align: center;
     text-transform: lowercase;
+}
+
+a {
+  cursor: pointer;
 }

@@ -2,20 +2,23 @@
 
   <div class="row">
 
-    <div class="col-md-6 show-and-tell town">
-      <a ng-href="/#localVenues"><h4>Show Me The Music Scene Around Town</h4></a>
-    </div>
-    <div class="col-md-6 show-and-tell tour">
-       <a ng-href="/#songkick" ><h4>Tell Me About Similar Artists on Tour</h4></a>
-    </div>
-
     <a ng-href="/#localVenues">
-      <div class="col-md-6 pic" style="background-image:url({{picSrc}}); background-size:425px 500px; background-repeat: no-repeat"></div>
+      <div class="col-md-6 col-lg-6" style="background-image:url({{picSrc}});">
+        <div class="main-insert">
+          <h1>Show Me</h1>
+          <h4>The Music Scene Around Here</h4>
+        </div>
+      </div>
     </a>
     <a ng-href="/#songkick">
-      <div class="col-md-6 pic" style="background-image:url({{featuredArtist}}); background-size:425px 500px; background-repeat: no-repeat"></div>
+      <div class="col-md-6 col-lg-6 pic" style="background-image:url({{featuredArtist}})">
+        <div class="main-insert">
+          <h1>Tell Me</h1>
+          <h4>About Similar Artists on Tour</h4>
+        </div>
+      </div>
     </a>
 
   </div>
-  
+
 </div>

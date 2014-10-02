@@ -40,8 +40,11 @@
 }
 
 div .col-md-6 {
-  height:600px;
+  height:500px;
   padding: 0;
+  background-size: 400px 500px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .navbar {
@@ -80,11 +83,6 @@ div .col-md-6 {
   border-color: #d5d5d5 !important;
 }
 
-.pic img {
-  width:100%;
-  height:auto;
-  max-height:100%;
-}
 
 div .show-and-tell {
   text-align: center;
@@ -117,10 +115,19 @@ a:link {
 }
 
 h4 {
-  font-size: 3em !important;
+  font-size: 2em !important;
 }
 
 body {
   background-color: #f0f0f0;
   font-family: 'Anton', sans-serif !important;
+}
+
+.main-insert {
+  margin-top: 300px;
+  color: black;
+  background-color: #d5d5d5;
+  border-radius: 280px;
+  cursor: pointer;
+  /*opacity: .8;*/
 }
