@@ -1,11 +1,33 @@
+table {
+  border-collapse:collapse
+}
+
 th {
-  text-align: left;
+  text-align: center;
+  font-family: 'open-sans';
+
 }
 
 td {
-  text-align: left;
+  text-align: center;
+  padding: .5em;
+  border-bottom: 1px solid #000;
+  font-family: 'open-sans';
 }
 
 .blue {
   color: blue;
+}
+
+.directions {
+  text-align: center;
+  width: 25%;
+}
+
+a {
+  cursor: pointer;
+}
+
+h3 {
+  text-decoration: underline;
 }

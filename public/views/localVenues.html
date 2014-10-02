@@ -12,18 +12,18 @@
   <div class="row">
     <div class="col-md-12">
      
-     <div class="col-md-6" style="height:450px;overflow:scroll;padding:1em;">
+     <div class="col-md-7" style="height:450px;overflow:scroll;padding:1em;">
       <table width="100%">
         <h3>Venues in {{city}}</h3>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Directions</th>
-        </tr>
+    <!--     <tr>
+          <th>(Name)</th>
+          <th>(Address)</th>
+          <th>(Directions)</th>
+        </tr> -->
         <tr ng-repeat="venue in localVenues">
           <td><a ng-click='getVenue(venue.displayName, venue.lat, venue.lng)'>{{venue.displayName}}</a></td>
           <td>{{venue.street}}, {{venue.zip}}</td>
-          <td>
+          <td class="directions">
             <a ng-click="getMap(venue.lat, venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
             <a ng-click="getMap(venue.lat, venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
             <a ng-click="getMap(venue.lat, venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
@@ -35,18 +35,16 @@
       </table>  
      </div>
 
-     <div class="col-md-6" style="height:450px;overflow:scroll;border-left:solid 1px;padding:1em;color:black">
+     <div class="col-md-5" style="height:450px;overflow:scroll;border-left:solid 1px;padding:1em;color:black">
       <table width="100%">
         <h3>All Upcoming Events in {{city}}</h3>
-        <tr>
-          <th>Headliner</th>
-          <th>Venue</th>
-          <th>Date</th>
-        </tr>
+      <!--   <tr>
+          <th>(Venue)</th>
+          <th>(Event)</th>
+        </tr> -->
         <tr ng-repeat="event in upcomingEvents" ng-class="getClass(event)">
-          <td>{{event.performance[0].displayName}}</td>
-          <td><a ng-click='getVenue(event.venue.displayName, event.venue.lat, event.venue.lng)'>{{event.venue.displayName}}</a></td>
-          <td>{{event.start.date}}</td>
+       <!--    <td><a ng-click='getVenue(event.venue.displayName, event.venue.lat, event.venue.lng)'>{{event.venue.displayName}}</a></td> -->
+          <td><a ng-click='getVenue(event.venue.displayName, event.venue.lat, event.venue.lng)'>{{event.displayName}}</a></td>
         </tr>
       </table>  
      </div>

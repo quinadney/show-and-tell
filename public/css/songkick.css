@@ -67,3 +67,7 @@ input {
 a {
   cursor: pointer;
 }
+
+.songkick-table {
+  font-weight: thin;
+}
