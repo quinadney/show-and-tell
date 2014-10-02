@@ -67,13 +67,13 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
       $scope.featuredArtist = $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)];
       });
 
-    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('city') + ',skyline&tag_mode=all&sort=relevance')
+    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('currentCity') + ',skyline&tag_mode=all&sort=relevance')
       .success(function(data) {
         var allPhotos = data.photos.photo;
         $scope.featuredLocalPhoto = allPhotos[Math.floor(Math.random()*allPhotos.length)];
         $scope.picSrc = 'https://farm' + $scope.featuredLocalPhoto.farm + '.staticflickr.com/' + $scope.featuredLocalPhoto.server + '/' + $scope.featuredLocalPhoto.id + '_' + $scope.featuredLocalPhoto.secret + '.jpg';
       });
     };
-    
+
     $scope.localPhoto();
 });

@@ -21,19 +21,19 @@
         <!-- <p>Venue ID: {{venue.id}}</p> -->
         <p><b>{{venue.location.address}}</b></p>
         <p>{{venue.location.city}}, {{venue.location.state}} {{venue.location.postalCode}}</p>
-        <br/>
-        <p><a ng-href="{{place.url}}">Webpage</a> / 
-           <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}">Facebook</a> / 
-           <a ng-href="https://twitter.com/{{place.contact.twitter}}">Twitter</a>
-        </p>
-        <p>Phone: {{place.contact.formattedPhone}}</p>
-        <p></p>
         <p>Check-ins: {{venue.stats.checkinsCount}}</p>
+        <p>Phone: {{place.contact.formattedPhone}}</p>
+        <p>
+          <a ng-href="{{place.url}}">Webpage</a> / 
+          <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}">Facebook</a> / 
+          <a ng-href="https://twitter.com/{{place.contact.twitter}}">Twitter</a>
+        </p>
+        <p></p>
       </div>
       <div class="col-md-5">
         <img ng-src="{{currentPic}}"/>
       </div>
-      <div class="col-md-4" style="height:350px;overflow:auto;">
+      <div class="col-md-4" style="height:400px;overflow:auto;">
         <h3>Upcoming Events:</h3>
         <ul> <li ng-repeat="event in upcomingEvents" style="text-align:left">{{event.displayName}}</li></ul>
       </div>
@@ -42,7 +42,7 @@
   
   <br><br>
   <slick init-onload=true data="eventPhotos" infinite=true slides-to-show=6 slides-to-scroll=1>
-  <div ng-repeat="event in eventPhotos track by $index" ng-click="changePhoto(event)"><a ng-click="changePhoto(event)"><img ng-src={{event}}></a></div>
+    <div ng-repeat="event in eventPhotos track by $index" ng-click="changePhoto(event)" class="slick"><img ng-src={{event}}></div>
   </slick>
 
 
@@ -61,7 +61,7 @@
   <div ng-repeat="venueEvent in venueEvents">
     <p>{{venueEvent.performance.artist.displayName}}: {{venueEvent.start.date}}</p>
   </div> -->
-<script src="libs/jquery/dist/jquery.js"></script>
-<script src="libs/slick-carousel/slick/slick.js"></script>
-<script src="libs/angular-slick/dist/slick.js"></script>
+<!-- <script src="libs/slick-carousel/slick/slick.js"></script> -->
+<!-- <script src="libs/angular-slick/dist/slick.js"></script> -->
+
 </div>

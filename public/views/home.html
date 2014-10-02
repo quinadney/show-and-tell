@@ -14,19 +14,19 @@
 
   <!-- <p>Tell me your favorite musician and let me show you similar artists touring nearby.</p> -->
   <div class="row">
-    <div class="col-md-6 show">
-    <h3>Show Me The Music Around Town or...</h3>
+    <div class="col-md-6 show-and-tell town">
+      <a ng-href="/#localVenues"><h4>Show Me The Music Scene Around Town</h4></a>
     </div>
-    <div class="col-md-6 tell">
-    <h3>Tell Me About Recommended Touring Artists</h3>
+    <div class="col-md-6 show-and-tell tour">
+       <a ng-href="/#songkick" ><h4>Tell Me About Similar Artists on Tour</h4></a>
     </div>
 
-    <div class="col-md-6 pic">
-      <a ng-href="/#localVenues"><img ng-src={{picSrc}}></a>
-    </div>
-    <div class="col-md-6 pic">
-      <a ng-href="/#songkick"><img ng-src={{featuredArtist}}></a>
-    </div>
+    <a ng-href="/#localVenues"><div class="col-md-6 pic" style="background-image:url({{picSrc}}); background-size:425px 500px; background-repeat: no-repeat">
+      <!-- <img ng-src={{picSrc}}> -->
+    </div></a>
+    <a ng-href="/#songkick" ><div class="col-md-6 pic" style="background-image:url({{featuredArtist}}); background-size:425px 500px; background-repeat: no-repeat">
+      <!-- <img ng-src={{featuredArtist}}> -->
+    </div></a>
   </div>
 </div>
 

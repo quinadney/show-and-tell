@@ -3,3 +3,13 @@
   left: 0;
   right: 0;
 }
+
+img {
+  width: 100%;
+}
+
+.slick {
+  height: 150px;
+  width: 150px;
+  padding: .5em;
+}

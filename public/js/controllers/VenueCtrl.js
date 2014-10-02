@@ -8,8 +8,6 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
   $scope.selectedVenue = [];
   $scope.allVenueInfo = [];
   $scope.photo = '';
-  console.log($scope.songkickID);
-  console.log($scope.venue);
 
 
   (function getVenue() {
@@ -27,7 +25,11 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
       var promise3 = $http.get('https://api.foursquare.com/v2/venues/' + $scope.venueID + '/photos?client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701');
 
       promise3.success(function(data) {
-        console.log('photos', data.response.photos.items);
+        $scope.eventPhotos = [];
+        var photos = data.response.photos.items;
+        for (var i=0; i<photos.length; i++) {
+          $scope.eventPhotos.push((photos[i].prefix + '400x400' + photos[i].suffix));
+        }
       });
 
       promise2.success(function(data) { 
@@ -37,29 +39,13 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
         // console.log($scope.allVenueInfo);
         $scope.photo = data.response.venue.photos.groups[0].items[0].prefix + '400x400' + data.response.venue.photos.groups[0].items[0].suffix;
         $scope.photo1 = data.response.venue.photos.groups[0].items[0].prefix + '150x150' + data.response.venue.photos.groups[0].items[0].suffix;
-        $scope.photo2 = data.response.venue.photos.groups[0].items[1].prefix + '150x150' + data.response.venue.photos.groups[0].items[1].suffix;
-        $scope.photo3 = data.response.venue.photos.groups[0].items[2].prefix + '150x150' + data.response.venue.photos.groups[0].items[2].suffix;
-        $scope.photo4 = data.response.venue.photos.groups[0].items[3].prefix + '150x150' + data.response.venue.photos.groups[0].items[3].suffix;
-        $scope.photo5 = data.response.venue.photos.groups[0].items[4].prefix + '150x150' + data.response.venue.photos.groups[0].items[4].suffix;
-        $scope.photo6 = data.response.venue.photos.groups[0].items[5].prefix + '150x150' + data.response.venue.photos.groups[0].items[5].suffix;
-        $scope.photo7 = data.response.venue.photos.groups[0].items[5].prefix + '150x150' + data.response.venue.photos.groups[0].items[5].suffix;
 
-        $scope.eventPhotos = [$scope.photo1, $scope.photo2, $scope.photo3, $scope.photo7, $scope.photo4, $scope.photo5, $scope.photo6];
         $scope.currentPic = $scope.photo;
-
-      // $scope.eventPhotos = [
-      //   {mimeType: 'image/jpg', src: $scope.photo1},
-      //   {mimeType: 'image/jpg', src: $scope.photo2},
-      //   {mimeType: 'image/jpg', src: $scope.photo3},
-      //   {mimeType: 'image/jpg', src: $scope.photo4},
-      //   {mimeType: 'image/jpg', src: $scope.photo5},
-      //   {mimeType: 'image/jpg', src: $scope.photo6},        
-      //   ];
-
 
 
       });
     });
+console.log('eventssss', $scope.eventPhotos);
   })(); // immediately call function on load
 
 $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
