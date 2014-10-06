@@ -1,34 +1,33 @@
 <link rel="stylesheet" type="text/css" href="../css/venue.css">
 
-<div class="jumbotron text-center full-width-absolute" style="opacity:0.9">
+<div class="jumbotron text-center full-width-absolute">
   
   <div class="row">
     <div class="col-md-12" ng-repeat="venue in selectedVenue">
-      <div class="col-md-3" style="height:420px;overflow:auto;" ng-repeat="place in allVenueInfo">
+      <div class="col-md-3 venueInfo" ng-repeat="place in allVenueInfo">
         <h1>{{selectedVenue[0].name}}</h1>
         <p><em>{{place.description}}</em></p>
-        <!-- <p>Venue ID: {{venue.id}}</p> -->
         <p><b>{{venue.location.address}}</b></p>
         <p>{{venue.location.city}}, {{venue.location.state}} {{venue.location.postalCode}}</p>
         <p>Check-ins: {{venue.stats.checkinsCount}}</p>
         <p>Phone: {{place.contact.formattedPhone}}</p>
-        <p>
-          <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}">Facebook</a> / 
-          <a ng-href="https://twitter.com/{{place.contact.twitter}}">Twitter</a>
-        </p>
         <p><a ng-href="{{place.url}}">Webpage</a></p>
+        <p>
+          <a ng-href="https://facebook.com/{{place.contact.facebookUsername}}"><i class="fa fa-facebook-square fa-2x"></i>  
+          <a ng-href="https://twitter.com/{{place.contact.twitter}}"><i class="fa fa-twitter-square fa-2x"></i></a>
+        </p>
       </div>
       <div class="col-md-5">
         <img ng-src="{{currentPic}}"/>
       </div>
-      <div class="col-md-4" style="height:400px;overflow:auto;">
+      <div class="col-md-4 upcomingEvents">
         <h2>Upcoming Events:</h2>
-        <ul> <li ng-repeat="event in upcomingEvents" style="text-align:left">{{event.displayName}}</li></ul>
+        <ul> <li ng-repeat="event in upcomingEvents">{{event.displayName}}</li></ul>
       </div>
     </div>
   </div>
   
-  <br><br>
+   <!-- <br><br>  -->
   <slick init-onload=true data="eventPhotos" infinite=true slides-to-show=6 slides-to-scroll=1>
     <div ng-repeat="event in eventPhotos track by $index" ng-click="changePhoto(event)" class="slick"><img ng-src={{event}}></div>
   </slick>

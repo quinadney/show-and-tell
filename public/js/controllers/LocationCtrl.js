@@ -4,10 +4,6 @@ angular.module('LocationCtrl', ['google-maps']).controller('LocationController',
         $scope.lng = position.coords.longitude;
         $scope.accuracy = position.coords.accuracy;
         $scope.$apply();
-    
-        // var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
-        // $scope.model.myMap.setCenter(latlng);
-        // $scope.myMarkers.push(new google.maps.Marker({ map: $scope.model.myMap, position: latlng }));
     };
     
     $scope.showError = function (error) {

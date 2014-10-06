@@ -1,0 +1,34 @@
+  #theMap {
+      width:100%;
+      height:350px;
+      background:#ccc;
+      margin: 5px 0;
+  }
+  .mapContainer {
+      width:100%;
+      margin:5px;
+      background-color: #eeeeee;
+  }
+  img {
+      max-width: none;
+  }
+  #wrongAddress {
+      display:none;
+  }
+
+  body {
+    overflow: visible;
+  }
+
+  .jumbotron {
+    opacity: .9;
+  }
+
+  h1 span {
+    text-transform: capitalize;
+  }
+
+  .directions {
+    height: 350px;
+    overflow: auto;
+  }

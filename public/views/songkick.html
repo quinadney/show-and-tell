@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../css/songkick.css">
 
-<div class="jumbotron text-center" style="opacity: 0.9;">
+<div class="jumbotron text-center">
   <h1>Similar Artists</h1>
 
   <div class="headline">
@@ -14,7 +14,7 @@
 
  
 
-  <div class="songkick-table" style="height:400px;overflow:auto;padding:1em;margin:1em;">
+  <div class="songkick-table">
     <div class="similarArtists">
       <p ng-repeat="artist in recommendedArtists | orderBy:'-currentCity'">
         <a ng-click='toggleModal(artist.displayName)'><i class="fa fa-play-circle-o fa-1x"></i>  <b>{{artist.displayName}}</b></a> -- <a ng-click='toggleTour(artist)'>Dates {{artist.currentCity}}</a>
@@ -23,24 +23,23 @@
   </div>
 
 
-
-
 <!-- Songkick Modal -->
   <modal-dialog show='modalShown' width='50%' height='550px'>
-   <p style="color:white">Check Out Music By: {{modalArtist}}</p>
+   <p>Check Out Music By: {{modalArtist}}</p>
    <div class="spotifyEmbed"><iframe ng-src="{{spotifyEmbedURL}}" width="80%" height="450px" frameborder="0" allowtransparency="true"></iframe></div>
   </modal-dialog>
+
 
 <!-- Tour Modal -->
   <modal-dialog show='tourModal' width='80%' height='70%'>
    <h1 style="color:white">Tour Dates for: <em>{{artistName}}</em></h1>
    <div>
     <div class="legend">
-      <p><span style="color:orange">Festival in {{city}} - Orange </span> | 
-      <span style="color:purple"> {{city}} - Purple </span> | 
-       <span style="color:green">Festival - Green</span> | 
-       <span style="color:blue">14+ - Blue</span> | 
-       <span style="color:red">21+ - Red</span></p>
+      <p><span class="orange">Festival in {{city}} - Orange </span> | 
+      <span class="purple"> {{city}} - Purple </span> | 
+       <span class="green">Festival - Green</span> | 
+       <span class="blue">14+ - Pink</span> | 
+       <span class="red">21+ - Red</span></p>
     </div>
     <div class="tour-table" style="height:300px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
       <table width="100%" class = "artistTour">

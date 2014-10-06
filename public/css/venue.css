@@ -45,4 +45,20 @@ a:link {
 
 .jumbotron {
   padding-bottom: 20px;
+  height: 600px;
+  opacity: .9;
+}
+
+.venueInfo {
+  height:420px;
+  overflow:auto;
+}
+
+.upcomingEvents {
+  height:400px;
+  overflow:auto;
+}
+
+.upcomingEvents ul li {
+  text-align:left;
 }

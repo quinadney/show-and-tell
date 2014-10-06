@@ -33,10 +33,8 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
       });
 
       promise2.success(function(data) { 
-      //   console.log(data);
         $scope.allVenueInfo.push(data.response.venue);
         console.log('allVenueInfo', $scope.allVenueInfo);
-        // console.log($scope.allVenueInfo);
         $scope.photo = data.response.venue.photos.groups[0].items[0].prefix + '400x400' + data.response.venue.photos.groups[0].items[0].suffix;
         $scope.photo1 = data.response.venue.photos.groups[0].items[0].prefix + '150x150' + data.response.venue.photos.groups[0].items[0].suffix;
 
@@ -62,24 +60,8 @@ $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.v
 
 
 
-  $scope.changePhoto = function(event) {
-    console.log('changing?');
-    // $scope.$apply(
-    //   function() {
-        $scope.currentPic = event;
-      // });
-    console.log($scope.currentPic);
+  $scope.changePhoto = function(pic) {
+    $scope.currentPic = pic;
   };
-
-
-
-
-  // if ($scope.songkickID) {
-  //   $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
-  //     .success(function(data) {
-  //       $scope.upcomingEvents = data.resultsPage.results.event;
-  //       console.log('upcoming events:', data);
-  //     });
-  // } else {console.log('need songkickID');}
 
 });

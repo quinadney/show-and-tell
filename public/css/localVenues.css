@@ -31,3 +31,21 @@ a {
 h3 {
   text-decoration: underline;
 }
+
+.cityVenues {
+  height:450px;
+  overflow:scroll;
+  padding:1em;
+}
+
+.cityEvents {
+  height:450px;
+  overflow:scroll;
+  border-left:solid 1px;
+  padding:1em;
+  color:black
+}
+
+.jumbotron {
+  opacity: .9
+}

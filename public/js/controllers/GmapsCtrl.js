@@ -1,7 +1,6 @@
 angular.module('GmapsCtrl', ['google-maps']).controller('GmapsController', function($scope, $route, $routeParams, $http) {
   $scope.tourModal = false;
 
-  $scope.tagline = "Let's get you that map...";
   $scope.map = {
       center: {
           latitude: 30.26715299,
@@ -40,8 +39,7 @@ var directionsDisplay = new google.maps.DirectionsRenderer(),
         $scope.origin = localStorage.getItem('latitude') + ', ' + localStorage.getItem('longitude');
         $scope.endPoint = $scope.latitude + ', ' + $scope.longitude;
         $scope.destination !== undefined ?$scope.destination : '1803 E 18th St, Austin TX 78702';
-        // $scope.hello = $routeParams.transportation;
-        //$scope.mode = {{mode}}
+
 
         geocoder.geocode({
             address: $scope.origin
@@ -113,8 +111,6 @@ var directionsDisplay = new google.maps.DirectionsRenderer(),
 
         directionsDisplay.setPanel(document.getElementById('directionsList'));
     };
-    // $scope.getDirections();
-
 
     (function getVenue() {
     var promise = $http.get('https://api.foursquare.com/v2/venues/search?ll=' + $scope.latitude + ',' + $scope.longitude + '&categoryId=4bf58dd8d48988d1e5931735&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');

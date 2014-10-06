@@ -56,21 +56,12 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
           $scope.recommendedArtists[i].currentCity = null;
           console.log($scope.recommendedArtists[i]);
           var promise = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json?apikey=QEwCZke1ncpF2MnG');
-          // allTours.push(promise);
-          // console.log(allTours)
-
-          // return $q.all(allTours
 
           promise.success(function(data) {
             console.log(data);
 
             for (var j = 0; j < data.resultsPage.results.event.length; j++) {
               
-              /////// Parse date in different format!!!????!!!!!
-              // var newDate = data.resultsPage.results.event.start.date.split('-');
-              // var date = new Date(year, month, day)
-              // data.resultsPage.results.event.start.date = newDate;
-
               $scope.recommendedArtists[i].tour = data.resultsPage.results.event;
 
               if (data.resultsPage.results.event[j].venue.metroArea.displayName === 'Austin') {
@@ -85,17 +76,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
         })(i);
       }
     });
-    // $scope.loadingModal = false;
   };
-
-  // $scope.getLocation = function() {
-  //   var austin = $http.get('http://api.songkick.com/api/3.0/metro_areas/9179/calendar.json?apikey=QEwCZke1ncpF2MnG');
-
-  //   austin.success(function(data) {
-  //     console.log(data);
-  //   });
-  // };
-
 
   $scope.toggleModal = function(artist) {
     var spotifyID = '';
@@ -104,11 +85,11 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
     var selectedArtist = $http.get('http://ws.spotify.com/search/1/artist.json?q=' + artist);
       selectedArtist.success(function(data) {
-        console.log("artist info:", data);
+        console.log('artist info:', data);
         spotifyID = data.artists[0].href.replace('spotify:artist:', '');
-        console.log("spotify ID", spotifyID);
+        console.log('spotify ID', spotifyID);
         src = 'https://embed.spotify.com/?uri=spotify:artist:' + spotifyID;
-        console.log("src", src);
+        console.log('src', src);
         $scope.spotifyEmbedURL = $sce.trustAsResourceUrl(src);
       });
     $scope.modalShown = !$scope.modalShown;
@@ -121,34 +102,18 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     $scope.artistTour = artist.tour;
     $scope.tourModal = !$scope.tourModal;
     $scope.artistName = artist.displayName;
+    $scope.getClass(artist.tour);
     console.log($scope.tourModal);
   };
 
   $scope.getClass = function(tour) {
+    console.log('colors');
     if (tour.location.city.indexOf('Austin') > -1 && tour.type === 'Festival') {return 'orange';}
     if (tour.location.city.indexOf('Austin') > -1) {return 'pink';}
     if (tour.ageRestriction === '14+') {return 'blue';}
     if (tour.ageRestriction === '21+') {return 'red';}
     if (tour.type === 'Festival') {return 'green';}
   };
-
-
-  // function locationDefined() {
-  //   return $scope.location.longitude && $scope.location.latitude;
-  // }
-
-  // if (locationDefined()) {
-  //   $scope.getCurrentCity();
-  // } else {
-  //   $scope.$watch('location', function(oldValue, newValue) {
-  //     if (oldValue !== newValue) {
-  //       if (locationDefined()) {
-  //         $scope.getCurrentCity();
-  //       }
-  //     }
-  //   }, true);
-  // }
-
 
   $scope.getMap = function(lat, long, type) {
     console.log(lat, long);

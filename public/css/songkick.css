@@ -21,6 +21,10 @@ td {
   height: 80%;
 }
 
+.white {
+  color: white;
+}
+
 .green {
   color: green;
 }
@@ -30,10 +34,10 @@ td {
 }
 
 .blue {
-  color: blue;
+  color: pink;
 }
 
-.pink {
+.purple {
   color: purple;
 }
 
@@ -48,6 +52,10 @@ td {
 
 a {
   color: inherit;
+}
+
+.jumbotron {
+  opacity: .9;
 }
 
 label {
@@ -70,4 +78,18 @@ a {
 
 .songkick-table {
   font-weight: thin;
+  height:400px;
+  overflow:auto;
+  padding:1em;
+  margin:1em;
 }
+
+.tour_table {
+  height:300px;
+  overflow:auto;
+  border:solid 1px;
+  padding:1em;
+  margin:1em;
+  color:white
+}
+

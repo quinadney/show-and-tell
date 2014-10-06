@@ -51,7 +51,7 @@ div .col-md-6 {
   z-index:3;
   text-align: center;
   top: 10px;
-  width: 22%;
+  width: 225px;
   margin-left: 39%;
 }
 
@@ -99,7 +99,7 @@ div .show-and-tell {
 }
 
 a {
-  color: inherit !important;
+  color: inherit;
 }
 
 a:link {
@@ -125,9 +125,18 @@ body {
 
 .main-insert {
   margin-top: 300px;
-  color: black;
-  background-color: #d5d5d5;
+  color: white;
+  /*background-color: #d5d5d5;*/
   border-radius: 280px;
   cursor: pointer;
   /*opacity: .8;*/
+  text-shadow: 2px 5px 20px #000000;
+
+}
+
+.jumbotron {
+  height:600px;
+  background-color: #a5a4a6;
+  opacity: .9999;
+  /*background:rgba(200,200,200,.9)!important;*/
 }
