@@ -8,7 +8,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
   if (($scope.cityID === null) || ($scope.city === null)) {
     console.log('ya');
     (function(){
-      $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
+      $http.get('/proxy?url=http://api.songkick.com/api/3.0/search/locations.json&location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
         .success(function(data) {
           console.log('city data', data);
 
@@ -19,7 +19,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
           localStorage.setItem('currentCityID', $scope.cityID);
         });
 
-        $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+        $http.get('/proxy?url=http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json&apikey=QEwCZke1ncpF2MnG')
           .success(function(data) {
             $scope.upcomingEvents = (data.resultsPage.results.event);
           });
@@ -27,7 +27,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
     })();
   } else {
     // console.log('no');
-    $http.get('http://api.songkick.com/api/3.0/metro_areas/' + localStorage.getItem('currentCityID') + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+    $http.get('/proxy?url=http://api.songkick.com/api/3.0/metro_areas/' + localStorage.getItem('currentCityID') + '/calendar.json&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
         console.log('dataaa', data);
         $scope.upcomingEvents = (data.resultsPage.results.event);
@@ -50,7 +50,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
 
   function getLocalVenues() {
     console.log('trying');
-    $http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + localStorage.getItem('currentCity') + ',tx&apikey=QEwCZke1ncpF2MnG')
+    $http.get('/proxy?url=http://api.songkick.com/api/3.0/search/venues.json&query=' + localStorage.getItem('currentCity') + ',tx&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
         console.log('venues', data);
         $scope.localVenues = data.resultsPage.results.venue;

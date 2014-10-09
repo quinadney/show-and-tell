@@ -1,4 +1,4 @@
-// server.js
+/*// server.js
 
 // modules --------------------------------------
 var express = require('express');
@@ -30,3 +30,42 @@ require('./app/routes')(app); // configure our routes
 app.listen(port); // startup our app at http://localhost:8080
 console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose app
+*/
+
+'use strict';
+
+var express = require('express');
+var app = express();
+var server = app.listen(3000);
+var request = require('request');
+var queryString = require('query-string');
+
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/public/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+    res.render('index');
+});
+
+app.get('/proxy', function(req, res) {
+    var url = req.query.url;
+    delete req.query.url;
+    url += ('?' + queryString.stringify(req.query)) || '';
+    console.log(url);
+    console.log(req.query);
+    var options = {
+        url: url
+    };
+    console.log('Options:', options);
+
+    request(options, function(error, response, body) {
+        if (error) {
+            console.log(error);
+            res.send(error);
+        } else {
+            console.log(body);
+            res.send(body);
+        }
+    });
+});

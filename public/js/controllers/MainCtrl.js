@@ -31,7 +31,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
       if (!localStorage.getItem('currentCity') || !localStorage.getItem('currentCityID')) {
         // console.log('ya');
         (function(){
-          $http.get('http://api.songkick.com/api/3.0/search/locations.json?location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
+          $http.get('/proxy?url=http://api.songkick.com/api/3.0/search/locations.json&location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
             .success(function(data) {
               // console.log('city data', data);
 
@@ -42,7 +42,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
               localStorage.setItem('currentCityID', $scope.cityID);
             });
 
-            $http.get('http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+            $http.get('/proxy?url=http://api.songkick.com/api/3.0/metro_areas/' + $scope.cityID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
               .success(function(data) {
                 $scope.upcomingEvents = (data.resultsPage.results.event);
               });
@@ -55,8 +55,9 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   $scope.localPhoto = function() {
     $scope.albumCovers = [];
 
-    $http.get('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=ee2ed1a1c901362b067bab4409e0a73e&format=json&limit=30')
+    $http.get('/proxy?url=http://ws.audioscrobbler.com/2.0/&method=chart.gettopartists&api_key=ee2ed1a1c901362b067bab4409e0a73e&format=json&limit=30')
       .success(function(data) {
+        console.log(data);
         var allArtists = data.artists.artist;
         // console.log('all artists', allArtists);
         for (var y = 0; y < allArtists.length; y++) {
@@ -65,7 +66,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
       $scope.featuredArtist = $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)];
       });
 
-    $http.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('currentCity') + ',music,skyline&tag_mode=all&sort=relevance&per_page=30')
+    $http.get('/proxy?url=https://api.flickr.com/services/rest/&method=flickr.photos.search&nojsoncallback=1&format=json&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=' + localStorage.getItem('currentCity') + ',music,skyline&tag_mode=all&sort=relevance&per_page=30')
       .success(function(data) {
         var allPhotos = data.photos.photo;
         // console.log('all photos', allPhotos);

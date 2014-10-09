@@ -113,7 +113,7 @@ var directionsDisplay = new google.maps.DirectionsRenderer(),
     };
 
     (function getVenue() {
-    var promise = $http.get('https://api.foursquare.com/v2/venues/search?ll=' + $scope.latitude + ',' + $scope.longitude + '&categoryId=4bf58dd8d48988d1e5931735&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
+    var promise = $http.get('/proxy?url=https://api.foursquare.com/v2/venues/search&ll=' + $scope.latitude + ',' + $scope.longitude + '&categoryId=4bf58dd8d48988d1e5931735&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
 
     promise.success(function(data) {
       console.log('venue', data);

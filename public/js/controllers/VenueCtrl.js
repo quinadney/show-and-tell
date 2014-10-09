@@ -11,7 +11,7 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
 
 
   (function getVenue() {
-    var promise = $http.get('https://api.foursquare.com/v2/venues/search?ll=' + $scope.venueLat + ',' + $scope.venueLong + '&categoryID=4d4b7104d754a06370d81259&query=' + $scope.venue + '&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
+    var promise = $http.get('/proxy?url=https://api.foursquare.com/v2/venues/search&ll=' + $scope.venueLat + ',' + $scope.venueLong + '&categoryID=4d4b7104d754a06370d81259&query=' + $scope.venue + '&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701&m=foursquare');
   
     promise.success(function(data) {
       console.log('4sq venue', data);
@@ -20,9 +20,9 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
 
       console.log($scope.selectedVenue);
 
-      var promise2 = $http.get('https://api.foursquare.com/v2/venues/' + $scope.venueID + '?client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701');
+      var promise2 = $http.get('/proxy?url=https://api.foursquare.com/v2/venues/' + $scope.venueID + '&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701');
 
-      var promise3 = $http.get('https://api.foursquare.com/v2/venues/' + $scope.venueID + '/photos?client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701');
+      var promise3 = $http.get('/proxy?url=https://api.foursquare.com/v2/venues/' + $scope.venueID + '/photos&client_id=KTDWDD2EH5SQBDHHJZNJHYUHZ54JKWF5CNDNSSFE35MLACET&client_secret=ZM2QQTIBGS1IUSBUF2NTIPPA3GNNHGGOAYABO0LAATDRMQO1&v=20140701');
 
       promise3.success(function(data) {
         $scope.eventPhotos = [];
@@ -46,12 +46,12 @@ angular.module('VenueCtrl', []).controller('VenueController', function($scope, $
 console.log('eventssss', $scope.eventPhotos);
   })(); // immediately call function on load
 
-$http.get('http://api.songkick.com/api/3.0/search/venues.json?query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
+$http.get('/proxy?url=http://api.songkick.com/api/3.0/search/venues.json&query=' + $scope.venue + '&apikey=QEwCZke1ncpF2MnG')
   .success(function(data) {
     console.log('venue: ', data);
     $scope.songkickID = data.resultsPage.results.venue[0].id;
-    $scope.venuePic = data.resultsPage.results.venue[0]
-    $http.get('http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json?apikey=QEwCZke1ncpF2MnG')
+    $scope.venuePic = data.resultsPage.results.venue[0];
+    $http.get('/proxy?url=http://api.songkick.com/api/3.0/venues/' + $scope.songkickID + '/calendar.json&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
         $scope.upcomingEvents = data.resultsPage.results.event;
         console.log('upcoming events:', data);

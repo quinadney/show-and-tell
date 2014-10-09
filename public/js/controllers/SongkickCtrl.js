@@ -19,30 +19,25 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     // console.log($scope.loadingModal);
     ////////////////// reset recommendedArtist array
     $scope.recommendedArtists = [];
-    // Get artist ID
 
     //Show's table head
     $scope.recommendedList = true;
     ////// Check if $scope.artist exists in localStorage ///////
 
-
-    var query = $http.get('http://api.songkick.com/api/3.0/search/artists.json?query=' + $scope.artist + '&apikey=QEwCZke1ncpF2MnG');
+    var query = $http.get('/proxy?url=http://api.songkick.com/api/3.0/search/artists.json&query=' + $scope.artist + '&apikey=QEwCZke1ncpF2MnG');
     // reset artist field
     // $scope.artist = '';
     // On success, assign ID to artistID
     query.then(function(response){
-      console.log('Making requests...', response);
-      $scope.artistId = response.data.resultsPage.results.artist[0].id;      
+      $scope.artistId = response.data.resultsPage.results.artist[0].id;
       // Get related artists from the ID above
-      var suggestions = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json?apikey=QEwCZke1ncpF2MnG');
-      var suggestions2 = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json?apikey=QEwCZke1ncpF2MnG&page=2&per_page=50');
-      var suggestions3 = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json?apikey=QEwCZke1ncpF2MnG&page=3&per_page=50');
+      var suggestions = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG');
+      var suggestions2 = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG&page=2&per_page=50');
+      var suggestions3 = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG&page=3&per_page=50');
 
       return $q.all([suggestions, suggestions2, suggestions3]);
     })
     .then(function (responses, fail) {
-      console.log('Response:', responses);
-      console.log('Fail', fail);
 
       for (var x = 0; x < responses.length; x++) {
         $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring).slice(0,33));
@@ -55,7 +50,7 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
         (function(i) {
           $scope.recommendedArtists[i].currentCity = null;
           console.log($scope.recommendedArtists[i]);
-          var promise = $http.get('http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json?apikey=QEwCZke1ncpF2MnG');
+          var promise = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json&apikey=QEwCZke1ncpF2MnG');
 
           promise.success(function(data) {
             console.log(data);
@@ -72,7 +67,6 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
             }
             localStorage.setItem($scope.artist, $scope.recommendedArtists);
           });
-
         })(i);
       }
     });
@@ -83,12 +77,12 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     var src = '';
     $scope.modalArtist = artist;
 
-    var selectedArtist = $http.get('http://ws.spotify.com/search/1/artist.json?q=' + artist);
+    var selectedArtist = $http.get('/proxy?url=http://ws.spotify.com/search/1/artist.json&q=' + artist);
       selectedArtist.success(function(data) {
         console.log('artist info:', data);
         spotifyID = data.artists[0].href.replace('spotify:artist:', '');
         console.log('spotify ID', spotifyID);
-        src = 'https://embed.spotify.com/?uri=spotify:artist:' + spotifyID;
+        src = '/proxy?url=https://embed.spotify.com/&uri=spotify:artist:' + spotifyID;
         console.log('src', src);
         $scope.spotifyEmbedURL = $sce.trustAsResourceUrl(src);
       });
