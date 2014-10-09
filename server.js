@@ -36,8 +36,8 @@ exports = module.exports = app; // expose app
 
 var express = require('express');
 var app = express();
-var server = app.listen(3000);
-var request = require('request');
+var port = process.env.PORT || 3000;
+  app.listen(port);var request = require('request');
 var queryString = require('query-string');
 
 app.use(express.static(__dirname + '/public'));
