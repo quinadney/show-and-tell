@@ -15,9 +15,9 @@ td {
   font-family: 'open-sans';
 }
 
-.blue {
-  color: blue;
-}
+/*.blue {
+  color: #428bca;
+}*/
 
 .directions {
   text-align: center;
@@ -46,6 +46,14 @@ h3 {
   color:black
 }
 
+.cityEvents td {
+  padding: 1em;
+}
+
 .jumbotron {
   opacity: .9
+}
+
+td > a:link, a:visited, a:hover, a:active {
+  color: inherit;
 }

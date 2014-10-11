@@ -34,7 +34,7 @@
       <p><span class="orange">Festival in {{city}} - Orange </span> | 
       <span class="purple"> {{city}} - Purple </span> | 
        <span class="green">Festival - Green</span> | 
-       <span class="blue">14+ - Pink</span> | 
+       <span class="pink">14+ - Pink</span> | 
        <span class="red">21+ - Red</span></p>
     </div>
     <div class="tour-table">
@@ -46,7 +46,7 @@
           <th>Directions</th>
         </tr>
         <tr ng-repeat="tour in artistTour" ng-class="getClass(tour)">
-          <td>{{tour.displayName}}</td>
+          <td><a ng-href='{{tour.uri}}' target="_blank">{{tour.displayName}}</a></td>
           <td><a ng-click='getVenue(tour.venue.displayName, tour.location.lat, tour.location.lng)'  class="modalLink">{{tour.venue.displayName}}</a></td>
           <td>{{tour.location.city}}</td>
           <td>

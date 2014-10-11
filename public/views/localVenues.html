@@ -12,6 +12,7 @@
           <td><a ng-click='getVenue(venue.displayName, venue.lat, venue.lng)'>{{venue.displayName}}</a></td>
           <td>{{venue.street}}, {{venue.zip}}</td>
           <td class="directions">
+            Directions: <br>
             <a ng-click="getMap(venue.lat, venue.lng, 'BICYCLING')" class="modalLink"><i class="fa fa-bicycle"></i></a>  
             <a ng-click="getMap(venue.lat, venue.lng, 'TRANSIT')" class="modalLink"><i class="fa fa-bus"></i></a>  
             <a ng-click="getMap(venue.lat, venue.lng, 'WALKING')" class="modalLink"><i class="fa fa-male"></i></a>  
@@ -25,7 +26,7 @@
       <table width="100%">
         <h3>All Upcoming Events in {{city}}</h3>
         <tr ng-repeat="event in upcomingEvents" ng-class="getClass(event)">
-          <td><a ng-click='getVenue(event.venue.displayName, event.venue.lat, event.venue.lng)'>{{event.displayName}}</a></td>
+          <td><a ng-href='{{event.uri}}' target="_blank">{{event.displayName}}</a></td>
         </tr>
       </table>  
      </div>

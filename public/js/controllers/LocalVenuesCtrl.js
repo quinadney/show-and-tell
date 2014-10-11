@@ -6,7 +6,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
   $scope.city = localStorage.getItem('currentCity');
 
   if (($scope.cityID === null) || ($scope.city === null)) {
-    console.log('ya');
+    console.log('hold on...');
     (function(){
       $http.get('/proxy?url=http://api.songkick.com/api/3.0/search/locations.json&location=geo:' + localStorage.getItem('latitude') + ',' + localStorage.getItem('longitude') + '&apikey=QEwCZke1ncpF2MnG')
         .success(function(data) {
@@ -26,7 +26,7 @@ angular.module('LocalVenuesCtrl', []).controller('LocalVenuesController', functi
         getLocalVenues();
     })();
   } else {
-    // console.log('no');
+    // console.log('go!');
     $http.get('/proxy?url=http://api.songkick.com/api/3.0/metro_areas/' + localStorage.getItem('currentCityID') + '/calendar.json&apikey=QEwCZke1ncpF2MnG')
       .success(function(data) {
         console.log('dataaa', data);

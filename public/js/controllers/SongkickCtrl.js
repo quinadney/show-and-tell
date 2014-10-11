@@ -3,7 +3,7 @@
 angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', function($scope, $http, $sce, $location, $q) {
   $scope.artistId = '';
   $scope.recommendedArtists = [];  
-  $scope.tagline = 'Show me touring artists like:';
+  $scope.tagline = 'Tell me about touring artists like:';
   // $scope.loadingModal = false;
   //Helper function to filter recommended artists
   function isTouring(band) {
@@ -51,11 +51,11 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
         // IFFI (i) to pass the number it's looping through with the rest of the async calls
         (function(i) {
           $scope.recommendedArtists[i].currentCity = null;
-          console.log($scope.recommendedArtists[i]);
+          // console.log($scope.recommendedArtists[i]);
           var promise = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.recommendedArtists[i].id + '/calendar.json&apikey=QEwCZke1ncpF2MnG');
 
           promise.success(function(data) {
-            console.log(data);
+            // console.log(data);
 
             for (var j = 0; j < data.resultsPage.results.event.length; j++) {
               
@@ -63,8 +63,8 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
               if (data.resultsPage.results.event[j].venue.metroArea.displayName === 'Austin') {
                 $scope.recommendedArtists[i].currentCity = '(Touring in ' + $scope.city + '!)'; 
-                console.log($scope.recommendedArtists[i]); 
-                console.log($scope.recommendedArtists[i].currentCity);
+                // console.log($scope.recommendedArtists[i]); 
+                // console.log($scope.recommendedArtists[i].currentCity);
               }
             }
           });
@@ -80,9 +80,9 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
 
     var selectedArtist = $http.get('/proxy?url=http://ws.spotify.com/search/1/artist.json&q=' + artist);
       selectedArtist.success(function(data) {
-        console.log('artist info:', data);
+        // console.log('artist info:', data);
         spotifyID = data.artists[0].href.replace('spotify:artist:', '');
-        console.log('spotify ID', spotifyID);
+        // console.log('spotify ID', spotifyID);
         src = '/proxy?url=https://embed.spotify.com/&uri=spotify:artist:' + spotifyID;
         console.log('src', src);
         $scope.spotifyEmbedURL = $sce.trustAsResourceUrl(src);
@@ -93,25 +93,24 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
   $scope.tourModal = false;
 
   $scope.toggleTour = function(artist) {
-    console.log('tour', artist);
+    // console.log('tour', artist);
     $scope.artistTour = artist.tour;
     $scope.tourModal = !$scope.tourModal;
     $scope.artistName = artist.displayName;
     $scope.getClass(artist.tour);
-    console.log($scope.tourModal);
+    // console.log($scope.tourModal);
   };
 
   $scope.getClass = function(tour) {
-    console.log('colors');
     if (tour.location.city.indexOf('Austin') > -1 && tour.type === 'Festival') {return 'orange';}
-    if (tour.location.city.indexOf('Austin') > -1) {return 'pink';}
-    if (tour.ageRestriction === '14+') {return 'blue';}
+    if (tour.location.city.indexOf('Austin') > -1) {return 'purple';}
+    if (tour.ageRestriction === '14+') {return 'pink';}
     if (tour.ageRestriction === '21+') {return 'red';}
     if (tour.type === 'Festival') {return 'green';}
   };
 
   $scope.getMap = function(lat, long, type) {
-    console.log(lat, long);
+    // console.log(lat, long);
     $location.path(('/gmaps/' + lat + '/' + long + '/' + type));
   };
 

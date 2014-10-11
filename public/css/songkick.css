@@ -25,7 +25,7 @@ th {
   color: red;
 }
 
-.blue, .blue td {
+.pink, .pink td {
   color: pink;
 }
 
@@ -50,8 +50,9 @@ td {
   font-size: 1em;
 }
 
-a {
+a, a:link {
   color: inherit;
+  cursor: pointer;
 }
 
 .jumbotron {
@@ -70,10 +71,6 @@ input {
     width: 150px;
     text-align: center;
     text-transform: lowercase;
-}
-
-a {
-  cursor: pointer;
 }
 
 .songkick-table {

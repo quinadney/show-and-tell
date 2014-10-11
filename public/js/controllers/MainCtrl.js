@@ -1,7 +1,11 @@
 'use strict';
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
   $scope.city = '';
-  
+  var allFlickrPics =[];
+  var allLastfmPics = [];
+  $scope.picSrc = localStorage.getItem('Flickr');
+  $scope.featuredArtist = localStorage.getItem('featuredArtist');
+
   // Clear local storage after a day to ensure better geolocation over extended use.
   if ((parseInt(Date.now()) - parseInt(localStorage.getItem('storageDate'))) > 86400000) {
     localStorage.clear();
@@ -51,19 +55,21 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
             for (var y = 0; y < allArtists.length; y++) {
               $scope.albumCovers.push(allArtists[y].image[4]["#text"]);
             }
-          $scope.featuredArtist = $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)];
+          localStorage.setItem('featuredArtist', $scope.albumCovers[Math.floor(Math.random()*$scope.albumCovers.length)]);
           });
-        $http.get('/proxy?url=https://api.flickr.com/services/rest/&method=flickr.photos.search&api_key=9029c1520fd26e7a82992f3adad76d92&tags=concert&per_page=25&page=1&sort=interestingness-desc&accuracy=11&lat=' + localStorage.getItem('latitude') + '&lon=' + localStorage.getItem('longitude') + '&format=json&nojsoncallback=1')
+        $http.get('/proxy?url=https://api.flickr.com/services/rest/&method=flickr.photos.search&api_key=10cfcdb96de50b5dd47bf03845bdd3e4&tags=concert&per_page=25&page=1&sort=interestingness-desc&accuracy=11&lat=' + localStorage.getItem('latitude') + '&lon=' + localStorage.getItem('longitude') + '&format=json&nojsoncallback=1')
           .success(function(data) {
-            console.log(data);
+            console.log('flikr', data);
             var allPhotos = data.photos.photo;
-            // localStorage.setItem('allPhotos', allPhotos);
             $scope.featuredLocalPhoto = allPhotos[Math.floor(Math.random()*allPhotos.length)];
-            $scope.picSrc = 'https://farm' + $scope.featuredLocalPhoto.farm + '.staticflickr.com/' + $scope.featuredLocalPhoto.server + '/' + $scope.featuredLocalPhoto.id + '_' + $scope.featuredLocalPhoto.secret + '.jpg';
+            allFlickrPics.push('https://farm' + $scope.featuredLocalPhoto.farm + '.staticflickr.com/' + $scope.featuredLocalPhoto.server + '/' + $scope.featuredLocalPhoto.id + '_' + $scope.featuredLocalPhoto.secret + '.jpg');
+            localStorage.setItem('Flickr', allFlickrPics);
           });
         };
-
       $scope.localPhoto();
     }
   });
+
+  $scope.picSrc = localStorage.getItem('Flickr');
+  $scope.featuredArtist = localStorage.getItem('featuredArtist');
 });

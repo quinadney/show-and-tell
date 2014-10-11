@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-4 upcomingEvents">
         <h2>Upcoming Events:</h2>
-        <ul> <li ng-repeat="event in upcomingEvents">{{event.displayName}}</li></ul>
+        <ul> <li ng-repeat="event in upcomingEvents"><a ng-href="{{event.uri}}" target="_blank">{{event.displayName}}</a></li></ul>
       </div>
     </div>
   </div>
