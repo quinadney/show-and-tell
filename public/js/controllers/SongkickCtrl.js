@@ -40,8 +40,10 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     .then(function (responses, fail) {
 
       for (var x = 0; x < responses.length; x++) {
-        $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring).slice(0,33));
+        $scope.recommendedArtists = $scope.recommendedArtists.concat(responses[x].data.resultsPage.results.artist.filter(isTouring));
       }
+
+      $scope.recommendedArtists = $scope.recommendedArtists.slice(0,50);
 
       //loop through recommended artists and pull tour info for each
       // var allTours = [];
@@ -65,7 +67,6 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
                 console.log($scope.recommendedArtists[i].currentCity);
               }
             }
-            localStorage.setItem($scope.artist, $scope.recommendedArtists);
           });
         })(i);
       }

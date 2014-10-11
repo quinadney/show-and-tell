@@ -5,14 +5,10 @@
 
   <div class="headline">
     <form ng-submit="getArtist()">
-      <!-- <p>{{location.latitude}} {{location.longitude}}</p> -->
       <label>{{tagline}}</label>
       <input type="text" ng-model="artist">
     </form>
   </div>
-
-
- 
 
   <div class="songkick-table">
     <div class="similarArtists">
@@ -41,7 +37,7 @@
        <span class="blue">14+ - Pink</span> | 
        <span class="red">21+ - Red</span></p>
     </div>
-    <div class="tour-table" style="height:300px;overflow:auto;border:solid 1px;padding:1em;margin:1em;color:white">
+    <div class="tour-table">
       <table width="100%" class = "artistTour">
         <tr>
           <th>Name</th>
@@ -65,5 +61,4 @@
     </div>
      </div>
   </modal-dialog>
-
 </div>

@@ -5,14 +5,6 @@ th {
   color: white;
 }
 
-td {
-  text-align: left;
-  color: white;
-  font-family: 'open-sans';
-  padding: 2px;
-  font-size: 1em;
-}
-
 .similarArtists p {
   text-align: center;
 }
@@ -25,29 +17,37 @@ td {
   color: white;
 }
 
-.green {
+.green, .green td {
   color: green;
 }
 
-.red {
+.red, .red td {
   color: red;
 }
 
-.blue {
+.blue, .blue td {
   color: pink;
 }
 
-.purple {
+.purple, .purple td {
   color: purple;
 }
 
-.orange {
+.orange, .orange td {
   color: orange;
 }
 
 .legend {
   font-size: 1.2em;
   color: #d5d5d5;
+}
+
+td {
+  text-align: left;
+  color: white;
+  font-family: 'open-sans';
+  padding: 2px;
+  font-size: 1em;
 }
 
 a {
