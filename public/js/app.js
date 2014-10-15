@@ -1,6 +1,7 @@
 'use strict';
 angular.module('showAndTellApp', [
   'ngRoute',
+  'songkickAPI',
   'LocalStorage', 
   'appRoutes', 
   'SongkickCtrl',
@@ -9,5 +10,5 @@ angular.module('showAndTellApp', [
   'LocationCtrl',
   'VenueCtrl',
   'LocalVenuesCtrl',
-  'slick'
+  'slick',
   ]);

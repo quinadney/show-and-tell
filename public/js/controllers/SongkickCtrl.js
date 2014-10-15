@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', function($scope, $http, $sce, $location, $q) {
+angular.module('SongkickCtrl', ['ngModal', 'songkickAPI']).controller('SongkickController', function($scope, $http, $sce, $location, $q, recommendedArtists) {
   $scope.artistId = '';
   $scope.recommendedArtists = [];  
   $scope.tagline = 'Tell me about touring artists like:';
@@ -31,9 +31,9 @@ angular.module('SongkickCtrl', ['ngModal']).controller('SongkickController', fun
     query.then(function(response){
       $scope.artistId = response.data.resultsPage.results.artist[0].id;
       // Get related artists from the ID above
-      var suggestions = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG');
-      var suggestions2 = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG&page=2&per_page=50');
-      var suggestions3 = $http.get('/proxy?url=http://api.songkick.com/api/3.0/artists/' + $scope.artistId + '/similar_artists.json&apikey=QEwCZke1ncpF2MnG&page=3&per_page=50');
+      var suggestions = recommendedArtists.recommend($scope.artistId, 1);
+      var suggestions2 = recommendedArtists.recommend($scope.artistId, 2);
+      var suggestions3 = recommendedArtists.recommend($scope.artistId, 3);
 
       return $q.all([suggestions, suggestions2, suggestions3]);
     })
