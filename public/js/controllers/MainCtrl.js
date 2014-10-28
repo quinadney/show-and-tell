@@ -2,9 +2,9 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
   $scope.city = '';
   var allFlickrPics =[];
-  var allLastfmPics = [];
-  $scope.picSrc = localStorage.getItem('Flickr');
-  $scope.featuredArtist = localStorage.getItem('featuredArtist');
+  // var allLastfmPics = [];
+  $scope.picSrc = (localStorage.getItem('Flickr') || 'http://www.chachaandspoons.com/wp-content/uploads/2012/09/concert-crowd.jpg');
+  $scope.featuredArtist = (localStorage.getItem('featuredArtist') || 'http://gp1.wac.edgecastcdn.net/802892/production_public/Artist/1103598/image/arcade-fire1111.jpg');
 
   // Clear local storage after a day to ensure better geolocation over extended use.
   if ((parseInt(Date.now()) - parseInt(localStorage.getItem('storageDate'))) > 86400000) {
@@ -70,6 +70,4 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
     }
   });
 
-  $scope.picSrc = localStorage.getItem('Flickr');
-  $scope.featuredArtist = localStorage.getItem('featuredArtist');
 });
